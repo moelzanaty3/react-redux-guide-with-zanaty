@@ -1,0 +1,8 @@
+GET https://fakestoreapi.com/products
+Accept: application/json
+
+###
+GET https://fakestoreapi.com/products/1
+Accept: application/json
+
+###
