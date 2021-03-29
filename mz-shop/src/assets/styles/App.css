@@ -9,3 +9,89 @@ body {
 body, .app {
   background: white;
 }
+
+.product-list {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.product {
+  padding: 20px;
+  background: white;
+  display: flex;
+}
+
+@media (min-width: 600px) {
+  .product {
+    margin: 20px;
+    border: 1px solid #d5d8df;
+    border-radius: 4px;
+  }
+}
+
+.product-avatar {
+  width: 100px;
+  margin-right: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.product-details {
+  padding-left: 20px;
+  border-left: 1px solid #eee;
+
+  flex: 1;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.product-details p {
+  margin: 0;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-meta {
+  display: flex;
+  align-content: center;
+}
+
+.product-meta .product-price  {
+  font-weight: bold;
+  background: gold;
+  padding: 5px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.product-meta .product-category {
+  font-weight: bold;
+}
+
+.product-description {
+  margin: 1rem 0 !important;
+  color: #777;
+}
+.product-remove {
+  padding-left: 20px;
+  align-self: center;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  background-image: url('../images/icons/cancel.svg');
+  background-size: 100% 100%;
+  border: 0;
+  color: black;
+  font-size: 0;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: none;
+}
+

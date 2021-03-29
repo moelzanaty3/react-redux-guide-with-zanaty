@@ -1,13 +1,16 @@
 import React from 'react'
+import Card from './Card'
 
 const Product = props => {
   return (
-    <div>
-      <h1>{props.title}</h1>
-      <h2>{props.description}</h2>
-      <h2>{props.price}</h2>
-    </div>
+    <Card title={props.title} image={props.image}>
+      <h3 className="product-title">{props.title}</h3>
+      <div className="product-meta">
+        <p className="product-price">{props.price}</p>
+        <p className="product-category">{props.category}</p>
+      </div>
+      <p className="product-description">{props.description}</p>
+    </Card>
   )
 }
-
 export default Product
