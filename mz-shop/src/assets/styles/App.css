@@ -155,3 +155,20 @@ body, .app {
     transition: background-color 0.2s;
     background-color: gold;
 }
+
+.close-product-details {
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-image: url('../images/icons/arrow-back.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    font-size: 0;
+}
+
+pre {
+    padding: 20px;
+    margin: 0 auto;
+    display: flex;
+}
