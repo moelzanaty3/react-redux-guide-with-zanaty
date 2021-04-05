@@ -95,3 +95,41 @@ body, .app {
   outline: none;
 }
 
+
+/* ListContacts */
+.list-products {
+  padding-top: 60px;
+}
+
+.list-products-top {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  border-bottom: 1px solid #d5d8df;
+  display: flex;
+}
+
+.search-products {
+  width: 100%;
+  padding: 20px 20px 20px 60px;
+  background-image: url('../images/icons/search.svg');
+  background-repeat: no-repeat;
+  background-position: 20px center;
+  background-size: 1.2em;
+  font-size: 1.2em;
+  border: 0;
+  outline: none;
+}
+
+
+.showing-products {
+  text-align: center;
+  margin: 20px 0;
+}
+.showing-products button {
+  color: gold;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+}
