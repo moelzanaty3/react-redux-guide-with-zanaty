@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 import { deleteProduct, getAllProduct } from './api/ProductAPI'
 import ProductList from './containers/ProductList'
+
+const ProductDetails = () => {
+  return <>Product Details</>
+}
 
 class App extends Component {
   state = {
@@ -26,10 +31,22 @@ class App extends Component {
   render() {
     return (
       <div>
-        <ProductList
-          products={this.state.products}
-          onDeleteProduct={this.handleDeleteProduct.bind(this)}
+        {/*
+          path: the path of the route. Here, we use / to define the path of the home page.
+          render: will display the content whenever the route is reached.
+        */}
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <ProductList
+              products={this.state.products}
+              onDeleteProduct={this.handleDeleteProduct.bind(this)}
+            />
+          )}
         />
+        <Route path="product/:id" component={ProductDetails} />
+        <Route render={() => <h1>404: page not found</h1>} />
       </div>
     )
   }
