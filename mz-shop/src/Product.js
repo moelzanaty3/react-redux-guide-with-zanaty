@@ -1,16 +1,41 @@
 import React from 'react'
-import Card from './Card'
+import PropTypes from 'prop-types'
 
-const Product = props => {
+const Product = ({ product, onDeleteProduct }) => {
   return (
-    <Card title={props.title} image={props.image}>
-      <h3 className="product-title">{props.title}</h3>
-      <div className="product-meta">
-        <p className="product-price">{props.price}</p>
-        <p className="product-category">{props.category}</p>
+    <div className="product">
+      {product.image && (
+        <img src={product.image} className="product-avatar" alt={`product of ${product.title}`} />
+      )}
+      <div className="product-details">
+        <h3 className="product-title">{product.title}</h3>
+        <div className="product-meta">
+          <p className="product-price">{product.price}</p>
+          <p className="product-category">{product.category}</p>
+        </div>
+        <p className="product-description">{product.description}</p>
       </div>
-      <p className="product-description">{props.description}</p>
-    </Card>
+      <div
+        className="product-remove"
+        onClick={() => {
+          onDeleteProduct(product.id)
+        }}
+      >
+        remove
+      </div>
+    </div>
   )
+}
+
+Product.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    price: PropTypes.number,
+    category: PropTypes.string,
+    image: PropTypes.string
+  }).isRequired,
+  onDeleteProduct: PropTypes.func.isRequired
 }
 export default Product

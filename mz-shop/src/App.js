@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import sortBy from 'sort-by'
-import { getAllProduct } from './api/ProductAPI'
+import { deleteProduct, getAllProduct } from './api/ProductAPI'
 import Product from './Product'
 
 class App extends Component {
@@ -26,6 +26,13 @@ class App extends Component {
 
   clearQuery = () => {
     this.handleSearchProduct('')
+  }
+
+  handleDeleteProduct(productId) {
+    this.setState(prevState => ({
+      products: prevState.products.filter(p => p.id !== productId)
+    }))
+    deleteProduct(productId).catch(err => console.log(err))
   }
 
   render() {
@@ -66,11 +73,8 @@ class App extends Component {
                 .map(product => (
                   <Product
                     key={product.id}
-                    title={product.title}
-                    image={product.image}
-                    price={product.price}
-                    category={product.category}
-                    description={product.description}
+                    product={product}
+                    onDeleteProduct={this.handleDeleteProduct.bind(this)}
                   />
                 ))}
           </ol>
