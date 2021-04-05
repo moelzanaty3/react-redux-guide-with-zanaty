@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch, Redirect, Link } from 'react-router-dom'
 import { deleteProduct, getAllProduct } from './api/ProductAPI'
 import ProductList from './containers/ProductList'
-
-const ProductDetails = () => {
-  return <>Product Details</>
-}
+import ProductDetails from './containers/ProductDetails'
 
 class App extends Component {
   state = {
@@ -31,22 +28,31 @@ class App extends Component {
   render() {
     return (
       <div>
-        {/*
-          path: the path of the route. Here, we use / to define the path of the home page.
-          render: will display the content whenever the route is reached.
-        */}
-        <Route
-          path="/"
-          exact
-          render={() => (
-            <ProductList
-              products={this.state.products}
-              onDeleteProduct={this.handleDeleteProduct.bind(this)}
-            />
-          )}
-        />
-        <Route path="product/:id" component={ProductDetails} />
-        <Route render={() => <h1>404: page not found</h1>} />
+        {/*Switch to tell to React Router to load only one route at a time*/}
+        <Switch>
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <ProductList
+                products={this.state.products}
+                onDeleteProduct={this.handleDeleteProduct.bind(this)}
+              />
+            )}
+          />
+          <Route exact path="/product/:id" component={ProductDetails} />
+          <Route
+            path="/404"
+            render={() => (
+              <div className="page-not-found">
+                <h1>404: page not found</h1>
+                <Link to="/">Home</Link>
+              </div>
+            )}
+          />
+          <Redirect to="/404" />
+          <Route />
+        </Switch>
       </div>
     )
   }

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 const Product = ({ product, onDeleteProduct }) => {
   return (
@@ -8,7 +9,9 @@ const Product = ({ product, onDeleteProduct }) => {
         <img src={product.image} className="product-avatar" alt={`product of ${product.title}`} />
       )}
       <div className="product-details">
-        <h3 className="product-title">{product.title}</h3>
+        <Link to={`product/${product.id}`}>
+          <h3 className="product-title">{product.title}</h3>
+        </Link>
         <div className="product-meta">
           <p className="product-price">{product.price}</p>
           <p className="product-category">{product.category}</p>
