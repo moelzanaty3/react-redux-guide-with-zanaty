@@ -88,7 +88,8 @@
         - pass as an argument `doAction(function doSomething(){});`
             - doSomething is a callback -> is a function passed as an argument to another function.
         - return from other function
-- [ ] Higher-order Functions
+- [x] Higher-order Functions
+    - A function that accepts and/or returns another function
 - [ ] Functional Composition
 - [ ] Composing and Piping
 - [ ] Currying
