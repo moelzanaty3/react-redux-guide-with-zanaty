@@ -1,53 +1,40 @@
-import { createStore } from 'redux'
-import { connect, Provider } from 'react-redux'
+import { connect } from 'react-redux'
 import './App.css'
+import { decrement, increment, reset } from './actions'
 
-const initialState = {
-  count: 0,
-}
-
-const INCREMENT = 'INCREMENT'
-const DECREMENT = 'DECREMENT'
-const RESET = 'RESET'
-
-const incrementValue = () => ({
-  type: INCREMENT,
-})
-
-const decrementValue = () => ({
-  type: DECREMENT,
-})
-
-const resetValue = () => ({
-  type: RESET,
-})
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case INCREMENT:
-      return { count: state.count + 1 }
-    case DECREMENT:
-      return { count: state.count - 1 }
-    case RESET:
-      return { count: 0 }
-    default:
-      return state
-  }
-}
-
-const store = createStore(reducer)
-
-function App() {
+function App({ count, dispatch }) {
   return (
     <main className="Counter">
-      <p className="count">0</p>
+      <p className="count">{count}</p>
       <section className="controls">
-        <button>Increment</button>
-        <button>Decrement</button>
-        <button>Reset</button>
+        <button
+          onClick={() => {
+            dispatch(increment())
+          }}
+        >
+          Increment
+        </button>
+        <button
+          onClick={() => {
+            dispatch(decrement())
+          }}
+        >
+          Decrement
+        </button>
+        <button
+          onClick={() => {
+            dispatch(reset())
+          }}
+        >
+          Reset
+        </button>
       </section>
     </main>
   )
 }
 
-export default App
+const mapStateToProps = ({ count }) => ({ count })
+
+// what I am connecting and what I am connecting to
+// https://react-redux.js.org/using-react-redux/connect-mapdispatch
+export default connect(mapStateToProps)(App)

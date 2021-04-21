@@ -136,6 +136,7 @@
         - Reflect changes made to the new/copied object in the original object 
         - Stores the copy of the original object and points the references to the objects.
 - [x] Updating Arrays
+- [x] [Redux Data Flow Concepts](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow)
 - [x] Redux Functions 
     - [x] Compose
     - [x] Reducer & CreateStore
@@ -143,5 +144,5 @@
     - [x] combineReducers 
     - [x] bindActionCreators
     - [x] Middleware in Redux
-- [ ] Redux React 
-    - [ ] Counter
+- [x] Redux React 
+    - [x] Counter
