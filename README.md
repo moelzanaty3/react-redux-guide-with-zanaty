@@ -136,3 +136,10 @@
         - Reflect changes made to the new/copied object in the original object 
         - Stores the copy of the original object and points the references to the objects.
 - [x] Updating Arrays
+- [X] Redux Functions 
+    - [X] Redux Functions Overview
+    - [X] Reducer & CreateStore
+    - [X] Store dispatch & Subscribe
+    - [X] combineReducers
+    - [X] bindActionCreators
+    - [X] Middleware in Redux

@@ -1,0 +1,12 @@
+{
+  "name": "redux-functions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "redux": "^4.0.5"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  }
+}
