@@ -90,9 +90,18 @@
         - return from other function
 - [x] Higher-order Functions
     - A function that accepts and/or returns another function
-- [ ] Functional Composition
-- [ ] Composing and Piping
-- [ ] Currying
+- [x] Functional Composition
+    - is the process of combining two or more functions to produce a new function.
+- [x] Currying
+    - is a technique of evaluating function with multiple arguments, into sequence of functions with single argument
+    - is a transformation of functions that translates a function from callable as `f(a, b, c)` into callable
+      as `f(a)(b)(c)`
+    - when a function, instead of taking all arguments at one time, takes the first one and return a new function that
+      takes the second one and returns a new function which takes the third one, and so forth, until all arguments have
+      been fulfilled. That is, when we turn a function call `sum(1,2,3)` into `sum(1)(2)(3)`
+    - **Why it’s useful ?**
+        - Currying helps we avoid passing the same variable again and again.
+        - It helps to create a higher order function
 - [ ] Pure Functions
 - [ ] Immutability
 - [ ] Updating Objects
