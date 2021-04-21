@@ -6,13 +6,13 @@
  * createStore: function()
  */
 const {
-    compose,
+    createStore
 } = require('redux')
 
-const makeLouder = (string) => string.toUpperCase()
-const repeatThreeTimes = (string) => string.repeat(3)
-const embolden = (string) => string.bold()
+const reducer = (state = { value: 1 }, action) => {
+    return state
+}
+const store = createStore(reducer)
 
-// compose
-const makeLouderAndBoldAndRepeatThreeTimes = compose(embolden, repeatThreeTimes, makeLouder)
-console.log(makeLouderAndBoldAndRepeatThreeTimes('hello'))
+console.log(Object.keys(store))
+console.log(store.getState())
