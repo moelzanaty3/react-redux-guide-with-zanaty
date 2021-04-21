@@ -102,8 +102,30 @@
     - **Why it’s useful ?**
         - Currying helps we avoid passing the same variable again and again.
         - It helps to create a higher order function
-- [ ] Pure Functions
-- [ ] Immutability
+- [x] Pure Functions
+    ![3 ways to avoid side effects](https://cdn-media-1.freecodecamp.org/images/0*4rGYQyYm_m8Byoyj.png)
+    - we can  call if the function is pure or not if passing `same args` everytime you will get `same result` 
+    - accept an input and returns a value without modifying any data outside its scope(Side Effects)
+    - This test itself is a checklist. **A few examples of side effects are**
+        * Mutating your input
+        * console.log
+        * HTTP calls (AJAX/fetch)
+        * Changing the filesystem (fs)
+        * Querying the DOM
+        * random values 
+        * current data/time
+- [x] Immutability
+    - once object created, can not be changed if you need to change the object you need to take a copy first then change this object
+    - pros 
+        - Predictability 
+        - Faster Change Detection 
+        - Concurrency 
+    - Cons 
+        - Performance 
+        - Memory Overhead
+    `let book = {}
+     book.title = '...'`
+          if you building application with redux you should not mutate data because that's a fundamental principle in redux
 - [ ] Updating Objects
 - [ ] Updating Arrays
 - [ ] Enforcing Immutability
