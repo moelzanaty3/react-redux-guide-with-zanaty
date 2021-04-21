@@ -126,6 +126,16 @@
     `let book = {}
      book.title = '...'`
           if you building application with redux you should not mutate data because that's a fundamental principle in redux
-- [ ] Updating Objects
+- [x] Updating Objects
+  
+    ![shallow, deep copy](https://i.stack.imgur.com/AWKJa.jpg)
+    - Deep copy 
+        - Store copies of the object's value. 
+        - Doesn't reflect changes made to the new/copied object in the original object.
+    - Shallow Copy 
+        - Reflect changes made to the new/copied object in the original object 
+        - Stores the copy of the original object and points the references to the objects.
+    
+
 - [ ] Updating Arrays
 - [ ] Enforcing Immutability
