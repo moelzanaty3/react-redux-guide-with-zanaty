@@ -135,7 +135,4 @@
     - Shallow Copy 
         - Reflect changes made to the new/copied object in the original object 
         - Stores the copy of the original object and points the references to the objects.
-    
-
-- [ ] Updating Arrays
-- [ ] Enforcing Immutability
+- [x] Updating Arrays
