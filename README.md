@@ -142,6 +142,6 @@
     - [x] Store dispatch & Subscribe
     - [x] combineReducers 
     - [x] bindActionCreators
-    - [ ] Middleware in Redux
+    - [x] Middleware in Redux
 - [ ] Redux React 
     - [ ] Counter

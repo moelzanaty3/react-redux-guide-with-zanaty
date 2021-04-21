@@ -8,7 +8,8 @@
 const {
     createStore,
     combineReducers,
-    bindActionCreators
+    bindActionCreators,
+    applyMiddleware
 } = require('redux')
 
 const calculatorReducer = (state = { value: 1 }, action) => {
@@ -34,7 +35,19 @@ const reducer = combineReducers({
     calculator: calculatorReducer
 })
 
-const store = createStore(reducer)
+
+// middle ware is a function that return another function
+const logger = ({ getState }) => {
+    return next => action => {
+        console.log('Middleware', getState(), action)
+        return next(action)
+    }
+}
+
+
+const store = createStore(reducer, applyMiddleware(
+    logger
+))
 
 // actions creators
 const createAddAction = (amount) => {
