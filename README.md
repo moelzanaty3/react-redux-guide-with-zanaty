@@ -140,7 +140,7 @@
     - [x] Compose
     - [x] Reducer & CreateStore
     - [x] Store dispatch & Subscribe
-    - [ ] combineReducers
+    - [x] combineReducers 
     - [ ] bindActionCreators
     - [ ] Middleware in Redux
 - [ ] Redux React 

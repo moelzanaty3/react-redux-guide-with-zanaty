@@ -7,9 +7,10 @@
  */
 const {
     createStore,
+    combineReducers
 } = require('redux')
 
-const reducer = (state = { value: 1 }, action) => {
+const calculatorReducer = (state = { value: 1 }, action) => {
     console.log('Something happened', action)
     switch (action.type) {
         case 'ADD':
@@ -23,43 +24,24 @@ const reducer = (state = { value: 1 }, action) => {
     }
 }
 
+const reducer = combineReducers({
+    calculator: calculatorReducer
+})
+
+console.log(reducer)
+
 const store = createStore(reducer)
 
-const first = store.getState()
+console.log(store.getState())
 
 store.dispatch({
     type: 'ADD',
     payload: {
-        amount: 2
+        amount: 1,
     }
 })
 
-const second = store.getState()
-console.log(first === second) // will be true when you mutate the state as it will be same reference
+console.log(store.getState())
 
 
-const unsubscribe = store.subscribe(() => {
-    console.log(store.getState().value)
-})
 
-store.dispatch({
-    type: 'ADD',
-    payload: {
-        amount: 2
-    }
-})
-store.dispatch({
-    type: 'ADD',
-    payload: {
-        amount: 2
-    }
-})
-
-unsubscribe()
-
-store.dispatch({
-    type: 'ADD',
-    payload: {
-        amount: 2
-    }
-})
