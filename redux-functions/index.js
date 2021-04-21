@@ -7,7 +7,8 @@
  */
 const {
     createStore,
-    combineReducers
+    combineReducers,
+    bindActionCreators
 } = require('redux')
 
 const calculatorReducer = (state = { value: 1 }, action) => {
@@ -24,24 +25,34 @@ const calculatorReducer = (state = { value: 1 }, action) => {
     }
 }
 
+/**
+ * The combineReducers helper function turns
+ * an object whose values are different
+ * reducing functions into a single reducing function you can pass to createStore.
+ */
 const reducer = combineReducers({
     calculator: calculatorReducer
 })
 
-console.log(reducer)
-
 const store = createStore(reducer)
 
-console.log(store.getState())
-
-store.dispatch({
-    type: 'ADD',
-    payload: {
-        amount: 1,
+// actions creators
+const createAddAction = (amount) => {
+    return {
+        type: 'ADD',
+        payload: {
+            amount
+        }
     }
-})
+}
 
-console.log(store.getState())
-
-
+store.dispatch(createAddAction(3))
+// === exactly the same just helper function
+const dispatchAdd = bindActionCreators(createAddAction, store.dispatch)
+/**
+ * Turns an object whose values are action creators,
+ * into an object with the same keys,
+ * but with every action creator wrapped into a dispatch call so they may be invoked directly.
+ */
+dispatchAdd(2)
 
