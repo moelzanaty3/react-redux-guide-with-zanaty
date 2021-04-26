@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Todo } from '../components'
+import { VISIBILITY_FILTERS } from '../constants'
 
 const TodoList = ({ todos }) => (
   <ul className="todo-list">
@@ -12,11 +13,19 @@ const TodoList = ({ todos }) => (
 
 const mapStateToProps = (state) => {
   const { byIds, allIds } = state.todos || {}
-  const todos =
+  const { visibilityFilter } = state
+  const allTodos =
     allIds && state.todos.allIds.length
       ? allIds.map((id) => (byIds ? { ...byIds[id], id } : null))
       : null
-  return { todos }
+  return {
+    todos:
+      visibilityFilter === VISIBILITY_FILTERS.ALL
+        ? allTodos
+        : visibilityFilter === VISIBILITY_FILTERS.COMPLETED
+        ? allTodos.filter((todo) => todo.completed)
+        : allTodos.filter((todo) => !todo.completed),
+  }
 }
 
 export default connect(mapStateToProps)(TodoList)
