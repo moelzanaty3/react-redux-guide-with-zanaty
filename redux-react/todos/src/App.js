@@ -1,4 +1,4 @@
-import { AddTodo } from './components'
+import { AddTodo, VisibilityFilters } from './components'
 import { TodoList } from './containers'
 
 function App() {
@@ -8,7 +8,8 @@ function App() {
         <div className="eight wide column">
           <h1 className="ui header">Todo List</h1>
           <AddTodo />
-          <TodoList todos={[]} />
+          <TodoList />
+          <VisibilityFilters />
         </div>
       </div>
     </div>
