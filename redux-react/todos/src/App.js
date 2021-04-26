@@ -9,9 +9,21 @@ function App() {
     { id: 4, content: 'Todo 4', completed: true },
     { id: 5, content: 'Todo 5', completed: true },
     { id: 6, content: 'Todo 6', completed: false },
-    { id: 7, content: 'Todo 7', completed: true },
-    { id: 8, content: 'Todo 8', completed: false },
   ]
+  const normalized = {
+    todos: {
+      allIds: [1, 2, 3, 4, 5, 6],
+      byIds: {
+        1: { content: 'Todo 1', completed: true },
+        2: { content: 'Todo 2', completed: false },
+        3: { content: 'Todo 3', completed: false },
+        4: { content: 'Todo 4', completed: true },
+        5: { content: 'Todo 5', completed: false },
+        6: { content: 'Todo 6', completed: false },
+      },
+    },
+  }
+
   return (
     <div className="todo-app">
       <div className="ui grid centered">

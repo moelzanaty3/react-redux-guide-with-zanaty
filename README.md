@@ -103,8 +103,8 @@
         - Currying helps we avoid passing the same variable again and again.
         - It helps to create a higher order function
 - [x] Pure Functions
-    ![3 ways to avoid side effects](https://cdn-media-1.freecodecamp.org/images/0*4rGYQyYm_m8Byoyj.png)
-    - we can  call if the function is pure or not if passing `same args` everytime you will get `same result` 
+  ![3 ways to avoid side effects](https://cdn-media-1.freecodecamp.org/images/0*4rGYQyYm_m8Byoyj.png)
+    - we can call if the function is pure or not if passing `same args` everytime you will get `same result`
     - accept an input and returns a value without modifying any data outside its scope(Side Effects)
     - This test itself is a checklist. **A few examples of side effects are**
         * Mutating your input
@@ -112,37 +112,48 @@
         * HTTP calls (AJAX/fetch)
         * Changing the filesystem (fs)
         * Querying the DOM
-        * random values 
+        * random values
         * current data/time
 - [x] Immutability
-    - once object created, can not be changed if you need to change the object you need to take a copy first then change this object
-    - pros 
-        - Predictability 
-        - Faster Change Detection 
-        - Concurrency 
-    - Cons 
-        - Performance 
+    - once object created, can not be changed if you need to change the object you need to take a copy first then change
+      this object
+    - pros
+        - Predictability
+        - Faster Change Detection
+        - Concurrency
+    - Cons
+        - Performance
         - Memory Overhead
-    `let book = {}
-     book.title = '...'`
-          if you building application with redux you should not mutate data because that's a fundamental principle in redux
+          `let book = {} book.title = '...'`
+          if you building application with redux you should not mutate data because that's a fundamental principle in
+          redux
 - [x] Updating Objects
-  
-    ![shallow, deep copy](https://i.stack.imgur.com/AWKJa.jpg)
-    - Deep copy 
-        - Store copies of the object's value. 
+
+  ![shallow, deep copy](https://i.stack.imgur.com/AWKJa.jpg)
+    - Deep copy
+        - Store copies of the object's value.
         - Doesn't reflect changes made to the new/copied object in the original object.
-    - Shallow Copy 
-        - Reflect changes made to the new/copied object in the original object 
+    - Shallow Copy
+        - Reflect changes made to the new/copied object in the original object
         - Stores the copy of the original object and points the references to the objects.
 - [x] Updating Arrays
 - [x] [Redux Data Flow Concepts](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow)
-- [x] Redux Functions 
+- [x] Redux Functions
     - [x] Compose
     - [x] Reducer & CreateStore
     - [x] Store dispatch & Subscribe
-    - [x] combineReducers 
+    - [x] combineReducers
     - [x] bindActionCreators
     - [x] Middleware in Redux
-- [x] Redux React 
+- [x] Redux React
     - [x] Counter
+    - [x] Setup Todos App
+    - [ ] Normalize Data
+        - [Normalizing State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape)
+        - The basic concepts of normalizing data are:
+            * Each type of data gets its own "table" in the state.
+            * Each "data table" should store the individual items in an object, with the IDs of the items as keys and
+              the items themselves as the values.
+            * Any references to individual items should be done by storing the item's ID.
+            * Arrays of IDs should be used to indicate ordering.
+
