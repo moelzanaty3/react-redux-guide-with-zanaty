@@ -1,4 +1,4 @@
-import { ADD_TODO } from '../constants'
+import { ADD_TODO, TOGGLE_TODO } from '../constants'
 
 const initialState = {
   allIds: [],
@@ -17,6 +17,19 @@ const todoReducer = (state = initialState, action) => {
           [id]: {
             content,
             completed: false,
+          },
+        },
+      }
+    }
+    case TOGGLE_TODO: {
+      const { id } = action.payload
+      return {
+        ...state,
+        byIds: {
+          ...state.byIds,
+          [id]: {
+            ...state.byIds[id],
+            completed: !state.byIds[id].completed,
           },
         },
       }
