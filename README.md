@@ -66,21 +66,22 @@
       very strict definition of purity
         - It returns the same result if given the same arguments
         - It does not cause any observable side effects example
-            ```// impure function
-            var tip = 0;
-             function calculateTip( mealTotal ) {
-                tip = 0.15 * mealTotal;
-             }
-            calculateTip( 150 )
-            console.log(tip)
-            
-            // pure function -> The pure function will 
-            // return the exact result every time, 
-            // and it doesn’t mutate any data outside of it.
-            function isPure(x,y) {
-                return x * y
-            }
-            console.log(isPure(3,5));```
+          ````// impure function
+          var tip = 0;
+           function calculateTip( mealTotal ) {
+              tip = 0.15 * mealTotal;
+           }
+          calculateTip( 150 )
+          console.log(tip)
+    
+          // pure function -> The pure function will
+          // return the exact result every time,
+          // and it doesn’t mutate any data outside of it.
+          function isPure(x,y) {
+              return x * y
+          }
+          console.log(isPure(3,5));```
+          ````
 - [x] Functions as First-Class Citizens
     - In JavaScript, functions are first-class objects, which means they can be:
         - stored in a variable `let fn = function doSomething() {}`, object `let obj = { doSomething : function(){} }`,
@@ -107,13 +108,13 @@
     - we can call if the function is pure or not if passing `same args` everytime you will get `same result`
     - accept an input and returns a value without modifying any data outside its scope(Side Effects)
     - This test itself is a checklist. **A few examples of side effects are**
-        * Mutating your input
-        * console.log
-        * HTTP calls (AJAX/fetch)
-        * Changing the filesystem (fs)
-        * Querying the DOM
-        * random values
-        * current data/time
+        - Mutating your input
+        - console.log
+        - HTTP calls (AJAX/fetch)
+        - Changing the filesystem (fs)
+        - Querying the DOM
+        - random values
+        - current data/time
 - [x] Immutability
     - once object created, can not be changed if you need to change the object you need to take a copy first then change
       this object
@@ -130,12 +131,14 @@
 - [x] Updating Objects
 
   ![shallow, deep copy](https://i.stack.imgur.com/AWKJa.jpg)
+
     - Deep copy
         - Store copies of the object's value.
         - Doesn't reflect changes made to the new/copied object in the original object.
     - Shallow Copy
         - Reflect changes made to the new/copied object in the original object
         - Stores the copy of the original object and points the references to the objects.
+
 - [x] Updating Arrays
 - [x] [Redux Data Flow Concepts](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow)
 - [x] Redux Functions
@@ -148,12 +151,16 @@
 - [x] Redux React
     - [x] Counter
     - [x] Setup Todos App
-    - [ ] Normalize Data
+    - [x] Normalize Data
         - [Normalizing State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape)
         - The basic concepts of normalizing data are:
-            * Each type of data gets its own "table" in the state.
-            * Each "data table" should store the individual items in an object, with the IDs of the items as keys and
+            - Each type of data gets its own "table" in the state.
+            - Each "data table" should store the individual items in an object, with the IDs of the items as keys and
               the items themselves as the values.
-            * Any references to individual items should be done by storing the item's ID.
-            * Arrays of IDs should be used to indicate ordering.
-
+            - Any references to individual items should be done by storing the item's ID.
+            - Arrays of IDs should be used to indicate ordering.
+        - [Why You Need to Normalize Redux Data](https://outline.com/wv7ZJW)
+        - Now it is easy to update a user using this data. You can update the users without modifying any of the posts.
+          Because the posts do not change, the Post component does not need to update, only the User component does.
+          Similarly, reordering the likes only involves sorting the list of ids and does not cause each User component
+          to update. This can lead to a huge performance win if you have a lot of likes.
