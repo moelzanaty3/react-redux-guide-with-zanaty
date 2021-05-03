@@ -1,23 +1,23 @@
 WRITE YOUR README here 
 
 Architect the application wrt
-    [ ] Redux
-        [ ] Actions 
-            [ ] Authed User
+    [x] Redux
+        [x] Actions 
+            [x] Authed User
                 [x] Set Authed User [login]
-                [ ] Remove Authed User [logout]
-                [ ] Authed User Answer Question 
-                [ ] Authed User Add Question
+                [x] Remove Authed User [logout]
+                [x] Authed User Answer Question 
+                [x] Authed User Add Question
             [x] Users 
                 [x] Get Users
             [x] Questions 
                 [x] Get Questions
                 [x] Add Question 
                 [x] Answer Question 
-        [ ] Reducers 
-            [ ] Questions
-            [ ] Users 
-            [ ] Authed User
+        [x] Reducers 
+            [x] Questions
+            [x] Users 
+            [x] Authed User
         [x] Middle ware
             [x] Logger 
             [x] Thunk
