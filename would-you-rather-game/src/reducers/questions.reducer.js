@@ -1,4 +1,4 @@
-import { ADD_QUESTION, GET_QUESTIONS } from '../constants'
+import { ADD_QUESTION, ANSWER_QUESTION, GET_QUESTIONS } from '../constants'
 
 export default function questionsReducer(questions = {}, action) {
   switch (action.type) {
@@ -13,6 +13,20 @@ export default function questionsReducer(questions = {}, action) {
       return {
         ...questions,
         [question.id]: question,
+      }
+    }
+    case ANSWER_QUESTION: {
+      const { authedUser, qid, answer } = action.payload
+      const targetOption = questions[qid][answer]
+      return {
+        ...questions,
+        [qid]: {
+          ...questions[qid],
+          [answer]: {
+            ...targetOption,
+            votes: [...targetOption.votes, authedUser],
+          },
+        },
       }
     }
     default:

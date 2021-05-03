@@ -13,7 +13,7 @@ Architect the application wrt
             [x] Questions 
                 [x] Get Questions
                 [x] Add Question 
-                [] Answer Question 
+                [x] Answer Question 
         [ ] Reducers 
             [ ] Questions
             [ ] Users 
