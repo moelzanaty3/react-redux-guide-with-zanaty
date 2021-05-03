@@ -10,10 +10,10 @@ Architect the application wrt
                 [ ] Authed User Add Question
             [x] Users 
                 [x] Get Users
-            [ ] Questions 
+            [x] Questions 
                 [x] Get Questions
-                [ ] Add Question 
-                [ ] Remove Question 
+                [x] Add Question 
+                [] Answer Question 
         [ ] Reducers 
             [ ] Questions
             [ ] Users 
