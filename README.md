@@ -204,6 +204,16 @@
         - Two Forms of mapDispatchToProps
             - Function form: Allows more customization
             - Object shorthand form: More declarative and easier to use
+- [x] [Middle Ware Redux](https://redux.js.org/tutorials/fundamentals/part-6-async-logic#using-the-redux-thunk-middleware)
+    - [Data Flow](https://redux.js.org/assets/images/ReduxAsyncDataFlowDiagram-d97ff38a0f4da0f327163170ccc13e80.gif)
+    - So far, all the data we've worked with has been directly inside of our React+Redux client application. 
+      However, most real applications need to work with data from a server, by making HTTP API calls to fetch and save items.
+    - By itself, a Redux store doesn't know anything about async logic. It only knows how to synchronously dispatch actions, update the state by calling the root reducer function, and notify the UI that something has changed. Any asynchronicity has to happen outside the store.
+    - we said that Redux reducers must never contain "side effects". A "side effect" is any change to state or behavior that can be seen outside of returning a value from a function. 
+    - Redux middleware were designed to enable writing logic that has side effects.
+    - a Redux middleware can do anything when it sees a dispatched action: log something, modify the action, delay the action, make an async call, and more.
+    - implement logger
+    - What if we wrote a middleware that let us pass a function to dispatch, instead of an action object? We could have our middleware check to see if the "action" is actually a function instead, and if it's a function, call the function right away. That would let us write async logic in separate functions, outside of the middleware definition.
 - [x] [Thunk](https://daveceddia.com/what-is-a-thunk/)
     - thunk, n. A thunk is another word for a function. But it’s not just any old function. It’s a special (and
       uncommon) name for a function that’s returned by another. Like this:
