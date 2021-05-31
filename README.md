@@ -1,19 +1,47 @@
-
 # Welcome to react-guide-with-zanaty.
 
-## Contents
+This course is unique as compared to other React introductions because this course attempts to teach you not only
+React, but the ecosystem around React. When I was learning React myself, I found myself frustrated that it seemed like
+every tutorial started on step 14 and left out the steps 1-13 of how to set up a React project.
+
+## Table of Contents
 
 - [Intro](#intro)
 - [Who Am I?](#who-am-i)
-- [What's is reactjs?]((#what-react-js))
+- [What's is reactjs?](#what-react-js)
+- [Pure React](#pure-react)
+- [NPM](#npm)
+- [Scaffolding Your React App](#create-react-app)
+- [Code Quality](#code-quality)
+- [NPM/Yarn scripts](#npmyarn-scripts)
+- [JSX](#JSX)
+- [Component Composition](#component-composition)
+- [NODE_ENV=development](#node_envdevelopment)
+- [Strict Mode](#strict-mode)
+- [Dev Tools](#dev-tools)
+- [The Component Lifecycle](#component-life-cycle)
+- [Why Redux?](#why-redux)
+- [What is Redux?](#what-is-redux)
+- [Pros and Cons of Redux](#pros-cons-of-redux)
+- [Function Programming](#function-programming)
+- [Functions as First-Class Citizens](#function-first-class)
+- [Higher-order Functions](#higher-order-functions)
+- [Functional Composition](#functional-composition)
+- [Currying](#curring)
+- [Pure Functions](#pure-functions)
+- [Immutability](#immutability)
+- [Updating Objects](#updating-objects)
+- [Updating Arrays](#updating-arrays)
+- [Redux Data Flow Concepts](#redux-flow)
+- [Redux Functions](#redux-functions)
+- [Redux React](#redux-react)
+- [Middle Ware Redux](#middle-ware-redux)
+- [Thunk](#thunk)
 
+<a name="intro"/>
 
-[Intro](#intro)
------------------------------
+## Intro
 
-- This course is unique as compared to other React introductions because this course attempts to teach you not only
-  React, but the ecosystem around React. When I was learning React myself, I found myself frustrated that it seemed like
-  every tutorial started on step 14 and left out the steps 1-13 of how to set up a React project.
 - React is nearly never used by itself so it's useful to know the tools you're using. **I believe you as a developer
   should know how your tools works and what purpose they're serving.** Many times have I taught courses similar to this
   one to hear people using tools and complaining about them because they don't actually know why they're using them,
@@ -34,13 +62,13 @@
 - if you have no idea about how to use git so well, let me recommend to you resources to learn it.
   - **Git** is definitely a tool worth investing time into; while it may seem boring and take a lot of time and energy
     to learn, some day it will save you days if not weeks worth of work.
-    * [Getting Git Right](https://www.atlassian.com/git)
-    * [Version Control with Git by Udacity](https://www.udacity.com/course/version-control-with-git--ud123)
-    * [Git Handbook](https://guides.github.com/introduction/git-handbook/)
+    - [Getting Git Right](https://www.atlassian.com/git)
+    - [Version Control with Git by Udacity](https://www.udacity.com/course/version-control-with-git--ud123)
+    - [Git Handbook](https://guides.github.com/introduction/git-handbook/)
 
+<a name="who-am-i"/>
 
-[Who Am I?](#who-am-i) 
------------------------------
+## Who Am I?
 
 ![Mohammed Elzanaty](https://avatars.githubusercontent.com/u/16934778?s=400&u=687f93e3b54916c911b232b55fd46f31e944beae&v=4)
 
@@ -79,15 +107,15 @@ most of this lovely material inspired from our lovely instructor [btholt](https:
 it's been a long time that I want to take a chance to write about one of my fav things in my life which it's react, of
 course, react... so let's first start by
 
+<a name="what-react-js"/>
 
-[What's is reactjs?](#what-react-js) 
------------------------------
+## What's is reactjs?
 
 As described
 
 1. [React-js](https://reactjs.org/docs/getting-started.html) documentation it's a JavaScript library for building user
    interfaces.
-2. [Wikipedia](https://en.wikipedia.org/wiki/React_(JavaScript_library)) React is a JavaScript library for building user
+2. [Wikipedia](<https://en.wikipedia.org/wiki/React_(JavaScript_library)>) React is a JavaScript library for building user
    interfaces. It is maintained by Facebook and a community of individual developers and companies. React can be used as
    a base in the development of single-page or mobile applications, as it is optimal for fetching rapidly changing data
    that needs to be recorded.
@@ -100,20 +128,19 @@ In programming... The composition is combining simple functions to build a more 
 
 Let's think of composition with another way In
 mathematics, [Function Composition](https://en.wikipedia.org/wiki/Function_composition) is an operation that takes two
-functions  `f` and g and produces a function h such that `h(x) = g(f(x))` In this operation, the function `g` is applied to the result of applying the function _f_ to _x_. That is, the
-functions `f : X → Y and g : Y → Z` are **composed** to yield a function that maps `x in X to g(f(x))
-in Z`.
+functions `f` and g and produces a function h such that `h(x) = g(f(x))` In this operation, the function `g` is applied to the result of applying the function _f_ to _x_. That is, the
+functions `f : X → Y and g : Y → Z` are **composed** to yield a function that maps `x in X to g(f(x)) in Z`.
 
 I see that things might go to be more complicated so now let's take an example,
 using [map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to create a
 new array from an initial set of data, and then filtering the result
 using [filter()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) as a **
-NOTE:**  _map, filter think of them as a factory or containers that given an initial list (array of things), transform
+NOTE:** _map, filter think of them as a factory or containers that given an initial list (array of things), transform
 it into something else, while keeping that same original list intact. :_
 
 ```jsx
-const people = ['Mohammed', 'Yasmeen', 'Elzanaty', 'Hamza', 'Saad']; 
-people.map(name => name[0]).filter(char => char === 'M') //'M'
+const people = ['Mohammed', 'Yasmeen', 'Elzanaty', 'Hamza', 'Saad'];
+people.map(name => name[0]).filter(char => char === 'M'); //'M'
 ```
 
 ### [Imperative Code](https://tylermcginnis.com/imperative-vs-declarative-programming/)
@@ -121,13 +148,14 @@ people.map(name => name[0]).filter(char => char === 'M') //'M'
 we tell code exactly what to do and how to do it.
 
 ```jsx
-const people = ['Mohammed', 'Yasmeen', 'Elzanaty', 'Hamza', 'Saad']; 
+const people = ['Mohammed', 'Yasmeen', 'Elzanaty', 'Hamza', 'Saad'];
 const excitedPeople = [];
 for (let i = 0; i < people.length; i++) {
-   excitedPeople[i] = people[i] + '!'
+  excitedPeople[i] = people[i] + '!';
 }
 // ["Mohammed!", "Yasmeen!", "Elzanaty!", "Hamza!", "Saad!"]
 ```
+
 ### [Declarative Code](https://stackoverflow.com/questions/33655534/difference-between-declarative-and-imperative-in-react-js)
 
 It's an easy and better approach for me, bcoz you let the computer do all that you need for you, you just want to
@@ -135,8 +163,8 @@ express the logic of a computation without describing its control flow we don't 
 the end result. Instead, we declare what we want to be done, and code will take care of doing it.
 
 ```jsx
-const people = ['Mohammed', 'Yasmeen', 'Elzanaty', 'Hamza', 'Saad']; 
-const excitedPeople = people.map(name => name + '!')
+const people = ['Mohammed', 'Yasmeen', 'Elzanaty', 'Hamza', 'Saad'];
+const excitedPeople = people.map(name => name + '!');
 // ["Mohammed!", "Yasmeen!", "Elzanaty!", "Hamza!", "Saad!"]
 ```
 
@@ -170,9 +198,9 @@ operations on this Virtual DOM, saving our app from having "costly" activity on 
 Diffing determines how to make efficient changes to the DOM. With diffing, old DOM nodes are taken out and replaced only
 when necessary. This way, our app doesn't perform any unnecessary operations to figure out when to render content.
 
+<a name="pure-react"/>
 
-[](#pure-react) Pure React
------------------------------
+## Pure React
 
 Let's start by writing pure React. No compile step. No JSX. No Babel. No Webpack or Create-React-App. **Just pure
 Vanilla JavaScript**.
@@ -186,29 +214,25 @@ building a shop app throughout this course.
 In `index.html` put:
 
 ```html
-
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>MZ-Shop</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="./style.css">
-  <title>MZ-Shop</title>
-</head>
-
-<body>
-<div id="root">not rendered</div>
-<script src="https://unpkg.com/react@17.0.1/umd/react.development.js"></script>
-<script src="https://unpkg.com/react-dom@17.0.1/umd/react-dom.development.js"></script>
-<script>
-  // Your code is going to go here
-</script>
-</body>
-
+  <body>
+    <div id="root">not rendered</div>
+    <script src="https://unpkg.com/react@17.0.1/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.1/umd/react-dom.development.js"></script>
+    <script>
+      // Your code is going to go here
+    </script>
+  </body>
 </html>
-
 ```
 
 > What's new between React 16 and React 17? Nothing! No new features were added. It was a "stepping stone" version that allows sites to upgrade React versions gradually. Previously only one copy of React could run on a page at a time and with v17 more than one can. [See more here](https://reactjs.org/blog/2020/10/20/react-v17.html).
@@ -217,18 +241,18 @@ Now open this file in your browser. On Mac, hit ⌘ (command) + O in your favori
 CTRL + O to open the Open prompt. Navigate to wherever you saved the file and open it. You should see a line of text
 saying "not rendered".
 
-* Pretty standard HTML5 document. If this is confusing, here's a free course from **Udacity**
+- Pretty standard HTML5 document. If this is confusing, here's a free course from **Udacity**
   about [HTML and CSS](https://www.udacity.com/course/intro-to-html-and-css--ud001) that can help you out.
-* We're adding a root div. We'll render our React app here in a sec. It doesn't _have_ to be called root, **_just a common
+- We're adding a root div. We'll render our React app here in a sec. It doesn't _have_ to be called root, **_just a common
   practice._**
-* We have two script tags.
+- We have two script tags.
 
-* The first is the **React library.** This library is the interface of how to interact with React; all the methods (except
+- The first is the **React library.** This library is the interface of how to interact with React; all the methods (except
   one) will be via this library. It contains no way of rendering itself though; it's just the API.
-* The second library is **the rendering layer**. Since we're rendering to the browser, we're using React DOM. There are
+- The second library is **the rendering layer**. Since we're rendering to the browser, we're using React DOM. There are
   other React libraries like React Native, React 360 (formerly React VR), A-Frame React, React Blessed, and others. You
   need both script tags. The order is not important.
-* The last script tag is where we're going to put our code. You don't typically do this but I wanted to start as simple
+- The last script tag is where we're going to put our code. You don't typically do this but I wanted to start as simple
   as possible. This script tag must come _after_ the other two.
 
 > Let's add some style! [Click here](https://raw.githubusercontent.com/btholt/citr-v6-project/master/01-no-frills-react/src/style.css) to get the stylesheet for this course. If you follow along with the course and use the same class names, the styles will be applied for you automatically. This isn't a course on CSS so I make no assertion it's any good!
@@ -236,42 +260,36 @@ saying "not rendered".
 **In the last script tag, put the following.**
 
 ```javascript
-
 const App = () => {
-  return React.createElement(
-    "div",
-    {},
-    React.createElement("h1", {}, "MZ Shop")
-  );
+  return React.createElement('div', {}, React.createElement('h1', {}, 'MZ Shop'));
 };
 
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
-
- ```   
+ReactDOM.render(React.createElement(App), document.getElementById('root'));
+```
 
 This is about the simplest React app you can build.
 
-* The first thing we do is make our own component, App. React is all about making components. And then taking those
+- The first thing we do is make our own component, App. React is all about making components. And then taking those
   components and making more components out of those.
-* There are **two types of components**, function components and class components. This is a function component. We'll see
+- There are **two types of components**, function components and class components. This is a function component. We'll see
   class components shortly.
-* A function component _must_ return markup (which is what `React.createElement` generates.)
-* These component render functions _have_ to be fast. This function is going to be called a lot. It's a hot code path.
-* Inside of the render function, you cannot modify any sort of state. Put in functional terms, this function must be
+- A function component _must_ return markup (which is what `React.createElement` generates.)
+- These component render functions _have_ to be fast. This function is going to be called a lot. It's a hot code path.
+- Inside of the render function, you cannot modify any sort of state. Put in functional terms, this function must be
   pure. You don't know how or when the function will be called so it can't modify any ambient state.
-* `React.createElement` creates one _instance_ of some component. If you pass it a _string_, it will create a DOM tag
+- `React.createElement` creates one _instance_ of some component. If you pass it a _string_, it will create a DOM tag
   with that as the string. We used `h1` and `div`, those tags are output to the DOM. If we put `x-some-custom-element`,
   it'll output that (so web components are possible too.)
-* The second empty object (you can put `null` too) is attributes we're passing to the tag or component. Whatever we put
+- The second empty object (you can put `null` too) is attributes we're passing to the tag or component. Whatever we put
   in this will be output to the element (like id or style.)
-* `ReactDOM.render` is what takes our rendered `App` component and puts in the DOM (in our case we're putting it in
+- `ReactDOM.render` is what takes our rendered `App` component and puts in the DOM (in our case we're putting it in
   the `root` element.)
-* Notice we're using `React.createElement` with `App` as a parameter to `ReactDOM.render`. We need an _instance_
+- Notice we're using `React.createElement` with `App` as a parameter to `ReactDOM.render`. We need an _instance_
   of `App` to render out. `App` is a class of components and we need to render one instance of a class. That's
   what `React.createElement` does: it makes an instance of a class.
 
-- [x] Without React Decoration
-Now that we've done that, let's separate this out from a script tag on the DOM to its own script file (best practice.)
+* [x] Without React Decoration
+      Now that we've done that, let's separate this out from a script tag on the DOM to its own script file (best practice.)
   1. Make a new file in your `src` directory called `App.js` and cut and paste your code into it.
   2. Add `<script src="App.js"></script>` before end of the body at `index.html` to link js file
 
@@ -279,66 +297,71 @@ Modify your code, so it looks like:
 
 ```javascript
 const Product = () => {
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, "Mens Cotton Jacket"),
-    React.createElement("h2", {}, "Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions,"),
-    React.createElement("h2", {}, "55.99$"),
+  return React.createElement('div', {}, [
+    React.createElement('h1', {}, 'Mens Cotton Jacket'),
+    React.createElement(
+      'h2',
+      {},
+      'Great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions,'
+    ),
+    React.createElement('h2', {}, '55.99$'),
   ]);
 };
 
 const App = () => {
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, "MZ Shop"),
+  return React.createElement('div', {}, [
+    React.createElement('h1', {}, 'MZ Shop'),
     React.createElement(Product),
     React.createElement(Product),
     React.createElement(Product),
   ]);
 };
 
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
+ReactDOM.render(React.createElement(App), document.getElementById('root'));
 ```
 
 > 🚨 You will be seeing a console warning `Warning: Each child in a list should have a unique "key" prop.` in your browser console. React's dev warnings are trying to help your code run faster. Basically React tries to keep track of components are swapped in order in a list and it does that by you giving it a unique key it can track. If it sees two things have swapped, it'll just move the components instead of re-rendering.
 
-
-* To make an element have multiple children, just pass it an array of elements.
-* We created a second new component, the `Product` component. This component represents one product. When you have
+- To make an element have multiple children, just pass it an array of elements.
+- We created a second new component, the `Product` component. This component represents one product. When you have
   distinct ideas represented as markup, that's a good idea to separate that it into a component like we did here.
-* Since we have a new `Product` component, we can use it multiple times! We just use multiple calls
+- Since we have a new `Product` component, we can use it multiple times! We just use multiple calls
   to `React.createElement`
   .
-* In `createElement`, the last two parameters are optional. Since Product has no props or children (it could, we just
+- In `createElement`, the last two parameters are optional. Since Product has no props or children (it could, we just
   didn't make it use them yet) we can just leave them off.
 
 Okay, so we can have multiple product, but it's not a useful component yet as the product contain a lot of properties
 like title, price, description and image etc. Let's make it a bit more complicated.
 
 ```javascript
-const Product = (props) => {
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, props.title),
-    React.createElement("h2", {}, props.description),
-    React.createElement("h2", {}, props.price),
+const Product = props => {
+  return React.createElement('div', {}, [
+    React.createElement('h1', {}, props.title),
+    React.createElement('h2', {}, props.description),
+    React.createElement('h2', {}, props.price),
   ]);
 };
 
 const App = () => {
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, "MZ Shop"),
+  return React.createElement('div', {}, [
+    React.createElement('h1', {}, 'MZ Shop'),
     React.createElement(Product, {
-      title: "Samsung SE450",
-      description: "21.5-inch desktop business monitor offers superior ergonomics and eco-friendly features – constructed with 30%",
-      price: "89.99$",
+      title: 'Samsung SE450',
+      description:
+        '21.5-inch desktop business monitor offers superior ergonomics and eco-friendly features – constructed with 30%',
+      price: '89.99$',
     }),
     React.createElement(Product, {
-      title: "Mac Book Pro",
-      description: "our perfect pack for everyday use and walks in the forest. 15 inches) in the padded sleeve, your everyday",
-      price: "700$",
+      title: 'Mac Book Pro',
+      description:
+        'our perfect pack for everyday use and walks in the forest. 15 inches) in the padded sleeve, your everyday',
+      price: '700$',
     }),
   ]);
 };
 
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
+ReactDOM.render(React.createElement(App), document.getElementById('root'));
 ```
 
 Now we have a more flexible component that accepts props from its parent. Props are variables that a parent (App) passes
@@ -347,8 +370,9 @@ this Product component can represent not just Mens Cotton Jacket, but any Produc
 components. We can then use these components to build larger components, which in turn make up yet-larger components.
 This is how React apps are made!
 
-[](#npm) NPM
------------------------------
+<a name="npm"/>
+
+## NPM
 
 npm does not stand for Node Package Manager. It is, however, the package manager for Node. (They don't say what it
 stands for.) It also has all the packages in the front end scene. npm makes a command line tool, called `npm` as
@@ -357,11 +381,12 @@ written, so you can use them in your project. Whenever you run `npm install reac
 the latest version of React from the registry.
 
 In order to start an npm project, run `npm init` at the root of your project. If you don't have Node.js installed,
-please go install that too. When you run `npm init` it'll ask you a bunch of questions, or you can me it is easier by `npm init -y`. 
-If you don't know the answer or don't care, just hit enter. You can always modify package.json later. 
+please go install that too. When you run `npm init` it'll ask you a bunch of questions, or you can me it is easier by `npm init -y`.
+If you don't know the answer or don't care, just hit enter. You can always modify package.json later.
 This will allow us to get started installing and saving packages.
+
 - [x] Kick off with create-react-app
-💡 Before Installing `create-react-app` 💡
+      💡 Before Installing `create-react-app` 💡
 
 If you already have Node.js on your machine, it's a good idea to reinstall it to make sure you have the latest version.
 Keep in mind that Node.js now comes with `npm` by default.
@@ -394,17 +419,16 @@ Keep in mind that Node.js now comes with `npm` by default.
 3. Please follow the [`yarn` installation instructions](https://yarnpkg.com/lang/en/docs/install).
 4. Run `yarn --version` to make sure `yarn` has been successfully installed.
 
+<a name="create-react-app"/>
 
-
-[](#create-react-app) Scaffolding Your React App
------------------------------
+## Scaffolding Your React App
 
 JSX is awesome, but it does need to be transpiled into regular JavaScript before reaching the browser. We typically use
 a transpiler like [Babel](https://github.com/babel/babel) to accomplish this for us. We can run Babel through a build
 tool, like [Webpack](https://github.com/webpack/webpack) which helps bundle all of our assets (JavaScript files, CSS,
 images, etc.) for web projects.
 
-To streamline these initial configurations, we  will use Facebook's Create React App package to manage all the setup for
+To streamline these initial configurations, we will use Facebook's Create React App package to manage all the setup for
 us! This tool is incredibly helpful to get started in building a React app, as it sets up everything we need with _zero
 configuration_! Install Create React App (through the command-line with [npm](https://www.npmjs.com/get-npm)), and then
 we can walk through what makes it so great.
@@ -418,70 +442,74 @@ information [here](https://stackoverflow.com/questions/5926672/where-does-npm-in
 
 ### **Set up the API file we will use to make more focus on react**
 
-I will use a fake api that return products to give us the ability to play with it. you can [take a look](https://fakestoreapi.com/docs) at it for more information 
-so now we need 4 important function to use 
-1. Get Products 
-2. Get Product by ID 
-3. Delete Product 
-4. Search in Products by Query 
+I will use a fake api that return products to give us the ability to play with it. you can [take a look](https://fakestoreapi.com/docs) at it for more information
+so now we need 4 important function to use
 
-so now create a folder in your `src` folder and name it `api` then create a new file called `ProductAPI.js` ad past this code on it. 
+1. Get Products
+2. Get Product by ID
+3. Delete Product
+4. Search in Products by Query
+
+so now create a folder in your `src` folder and name it `api` then create a new file called `ProductAPI.js` ad past this code on it.
+
 ```js
-const BASE_URL = 'https://fakestoreapi.com'
+const BASE_URL = 'https://fakestoreapi.com';
 
 /**
  * Get Product by Id
  * @param productId
  * @returns {Promise<any>}
  */
-export const getProductById = (productId) =>
+export const getProductById = productId =>
   fetch(`${BASE_URL}/products/${productId}`)
-    .then((res) => res.json())
-    .then((data) => data)
-    .catch((error) => {
-      console.log(error)
-    })
+    .then(res => res.json())
+    .then(data => data)
+    .catch(error => {
+      console.log(error);
+    });
 
 /**
  * Delete Product
  * @param productId
  * @returns {Promise<any>}
  */
-export const deleteProduct = (productId) =>
+export const deleteProduct = productId =>
   fetch(`${BASE_URL}/products/${productId}`, {
-    method: "DELETE",
+    method: 'DELETE',
   })
-    .then((res) => res.json())
-    .then((data) => data)
-    .catch((error) => {
-      console.log(error)
-    })
+    .then(res => res.json())
+    .then(data => data)
+    .catch(error => {
+      console.log(error);
+    });
 /**
  * Get All Products
  * @returns {Promise<any>}
  */
 export const getAllProduct = () =>
   fetch(`${BASE_URL}/products`)
-    .then((res) => res.json())
-    .then((data) => data)
-    .catch((error) => {
-      console.log(error)
-    })
+    .then(res => res.json())
+    .then(data => data)
+    .catch(error => {
+      console.log(error);
+    });
 
 /**
  * Search in products list
  * @param query
  * @returns {Promise<*>}
  */
-export const searchProduct = async (query) => {
-  const products = await getAllProduct()
+export const searchProduct = async query => {
+  const products = await getAllProduct();
   return products.filter(
-    (product) => product.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
-  )
-}
+    product => product.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
+  );
+};
 ```
-[](#code-quality)Code Quality
------------------------------
+
+<a name="code-quality"/>
+
+## Code Quality
 
 It's important to keep quality high when writing code. Or at least that's how I sell ESLint and Prettier to my
 co-workers. In reality, I'm super lazy and want the machine to do as much work as possible so I can focus more on
@@ -523,12 +551,15 @@ download [this extension](https://marketplace.visualstudio.com/items?itemName=es
 . Pro tip: set it to only run Prettier when it detects a Prettier config file. Makes it so you never have to turn it
 off. In order to do that, set `prettier.requireConfig` to `true` and `editor.formatOnSave` to true.
 
-So that our tool can know this is a Prettier project, we're going to create a file called `.prettierrc` and put 
+So that our tool can know this is a Prettier project, we're going to create a file called `.prettierrc` and put
+
 ```json
 {}
 ```
+
 in it. This lets everyone know this is a Prettier project that uses the default configuration. You can put other configs
-here if you hold strong formatting opinions. **for example here's mine** 
+here if you hold strong formatting opinions. **for example here's mine**
+
 ```json
 {
   "singleQuote": true,
@@ -541,14 +572,16 @@ here if you hold strong formatting opinions. **for example here's mine**
 }
 ```
 
-[](#npmyarn-scripts)npm/Yarn scripts
-------------------------------------
+<a name="npmyarn-scripts"/>
+
+## npm/Yarn scripts
 
 So it can be painful to try to remember the various CLI commands to run on your project. You can put CLI commands into
 it and then run the name of the tag and it'll run that script. Let's go see how that works. Put the following into your
 package.json.
 
 First run `npm install -D prettier`. `-D` means it's for development only.
+
 ```json
 {
   "scripts": {
@@ -556,17 +589,18 @@ First run `npm install -D prettier`. `-D` means it's for development only.
   }
 }
 ```
+
 Now you can run `yarn format` or `npm run format` and it will run that command. This means we don't have to remember
 that mess of a command and just have to remember format. Nice, right? We'll be leaning on this a lot during this course.
 
-[](#alternatives)Alternatives
------------------------------
+## [](#alternatives)Alternatives
 
 There really aren't any for Prettier. The alternative is just not to use a formatter. ESLint's `--fix` flag would be the
 closest thing.
 
-[](#JSX) JSX
------------------------------
+<a name="JSX"/>
+
+## JSX
 
 So far we've been writing React without JSX, something that I don't know anyone that actually does with their apps. _
 Everyone_ uses JSX. I show you this way so what JSX is actually doing is demystified to you. It doesn't do hardly
@@ -575,8 +609,9 @@ anything. It just makes your code a bit more readable.
 If I write `React.createElement("h1", { id: "main-title" }, "My Website");`, what am I actually trying to have rendered
 out? `<h1 id="main-title">My Website</h1>`, right? What JSX tries to do is to shortcut this translation layer in your
 brain, so you can just write what you mean. Let's convert `Product.js` to using JSX. It will look like this:
+
 ```jsx
-import React from 'react'
+import React from 'react';
 
 const Product = props => {
   return (
@@ -585,10 +620,10 @@ const Product = props => {
       <h2>{props.description}</h2>
       <h2>{props.price}</h2>
     </div>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;
 ```
 
 I don't know about you, but I find this far more readable. And if it feels uncomfortable to you to introduce HTML into
@@ -609,8 +644,8 @@ to `React.createElement` calls. Anywhere you use JSX, you need to import React.
 So now JSX is demystified a bit, let's go convert App.js.
 
 ```jsx
-import React, { Component } from 'react'
-import Product from './Product'
+import React, { Component } from 'react';
+import Product from './Product';
 
 class App extends Component {
   render() {
@@ -618,30 +653,31 @@ class App extends Component {
       <div>
         <h1>MZ Shop!</h1>
         <Product
-          title="Samsung SE450"
-          description="desktop business monitor offers superior ergonomics"
-          price="89.99$"
+          title='Samsung SE450'
+          description='desktop business monitor offers superior ergonomics'
+          price='89.99$'
         />
         <Product
-          title="Mac Book Pro"
-          description="Stash your laptop (up to 15 inches) in the padded sleeve,"
-          price="700$"
+          title='Mac Book Pro'
+          description='Stash your laptop (up to 15 inches) in the padded sleeve,'
+          price='700$'
         />
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
 ```
 
 Notice we have Product as a component. Notice that the `P` in `Product` is capitalized. It _must_ be. If you make it lowercase,
 it will try to have `product` as a web component and not a React component.
 
 We now pass props down as we add attributes to an HTML tag. Pretty cool.
- 
 
-[](#component-composition) Component Composition
+<a name="component-composition"/>
+
+## Component Composition
 
 I remember the first project I made in react and the way of thinking through building the component, just need to create
 too many components, but I found at the end of the day that this lead to deeply nested structures which made it a pain
@@ -660,36 +696,37 @@ for example here in our application the `Product` component. each product will h
 product including title, price, image and description etc...
 
 ```jsx
-// Product Card Component 
+// Product Card Component
 const ProductCard = props => {
   return (
-    <div className="card">
+    <div className='card'>
       <img src={props.image} />
       <ProductInfo {...props} />
       ...
     </div>
-  )
-}
-// Product Info Component 
+  );
+};
+// Product Info Component
 const ProductInfo = ({ title, description, price, category }) => {
   return (
-    <div className="product">
-      <h1 className="product__title">{title}</h1>
-      <ProductCategoryAndPrice price={price} category={category} />/>
-      <p className="product__description">{description}</p>
+    <div className='product'>
+      <h1 className='product__title'>{title}</h1>
+      <ProductCategoryAndPrice price={price} category={category} />
+      />
+      <p className='product__description'>{description}</p>
     </div>
-  )
-}
+  );
+};
 
-// ProductCategory And PriceComponent 
+// ProductCategory And PriceComponent
 const ProductInfo = ({ price, category }) => {
   return (
     <div>
-      <h4 className="product__price">{price}</h4>
-      <p className="product__category">{category}</p>
+      <h4 className='product__price'>{price}</h4>
+      <p className='product__category'>{category}</p>
     </div>
-  )
-}
+  );
+};
 ```
 
 so we can do this better here to reduce the nested structure by using `props.children` and by handling specialization
@@ -697,21 +734,21 @@ through props.
 
 ```jsx
 // Card.js
-import React from 'react'
+import React from 'react';
 
 const Card = props => {
   return (
-    <div className="product">
+    <div className='product'>
       {props.image && (
-        <img src={props.image} className="product-avatar" alt={`product of ${props.title}`} />
+        <img src={props.image} className='product-avatar' alt={`product of ${props.title}`} />
       )}
-      <div className="product-details">{props.children}</div>
-      <div className="product-remove">remove</div>
+      <div className='product-details'>{props.children}</div>
+      <div className='product-remove'>remove</div>
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;
 ```
 
 so now before we continue I have a question
@@ -721,20 +758,21 @@ so now before we continue I have a question
 The React docs say that you can use `props.children` on components that represent `generic boxes`
 and that ‘don’t know their children ahead of time’. For me, that did not really clear things up. I’m sure for some, that
 definition makes perfect sense, but it did not for me. My simple explanation of what `this.props.children` does is that
+
 > it is used to display whatever you include between the opening and closing tags when invoking a component.
 
 A simple example Here’s an example of a stateless function that is used to create a component. Again, since this is a
 stateless function, there is no 'this' keyword so just use `props.children`
 
 ```jsx
-const Product = (props) => {
+const Product = props => {
   return (
     <div>
       <h1>Zanaty</h1>
       {props.children}
     </div>
-  )
-}
+  );
+};
 ```
 
 This component contains an `<h1>` that is receiving some props, and then it is displaying {props.children}. Whenever
@@ -744,57 +782,57 @@ opening and closing tags of the component.
 so let's back to our code and create a product card in `Product.js`
 
 ```jsx
-import React from 'react'
-import Card from './Card'
+import React from 'react';
+import Card from './Card';
 
 const Product = props => {
   return (
     <Card title={props.title} image={props.image}>
-      <h3 className="product-title">{props.title}</h3>
-      <div className="product-meta">
-        <p className="product-price">{props.price}</p>
-        <p className="product-category">{props.category}</p>
+      <h3 className='product-title'>{props.title}</h3>
+      <div className='product-meta'>
+        <p className='product-price'>{props.price}</p>
+        <p className='product-category'>{props.category}</p>
       </div>
-      <p className="product-description">{props.description}</p>
+      <p className='product-description'>{props.description}</p>
     </Card>
-  )
-}
-export default Product
+  );
+};
+export default Product;
 ```
 
 but now as we add more props to our code we need to edit the `Product` component at `App.js` like
 
 ```jsx
-import React, { Component } from 'react'
-import Product from './Product'
+import React, { Component } from 'react';
+import Product from './Product';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <div className="product-list">
+        <div className='product-list'>
           <Product
-            title="Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
-            description="Your perfect pack for everyday use and walks in the forest. "
-            price="89.99$"
-            category="men clothing"
-            image="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
+            title='Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops'
+            description='Your perfect pack for everyday use and walks in the forest. '
+            price='89.99$'
+            category='men clothing'
+            image='https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg'
           />
 
           <Product
-            title="Mens Casual Premium Slim Fit T-Shirts"
-            description="Slim-fitting style, contrast raglan long sleeve, three-button henley placket,"
-            price="89.99$"
-            category="men clothing"
-            image="https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg"
+            title='Mens Casual Premium Slim Fit T-Shirts'
+            description='Slim-fitting style, contrast raglan long sleeve, three-button henley placket,'
+            price='89.99$'
+            category='men clothing'
+            image='https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg'
           />
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
 ```
 
 What are some benefits of this change? We now have code (the Card component) that is more reusable as a result of it
@@ -819,7 +857,7 @@ loading spinner based on whether it was finished loading or not.
 It's important to note that this is just a demonstration of a concept and by no means the 'right' way. Depending on your
 needs, you may compose your components differently.
 
-> I hear you enough working with static data and let's make stuff more dynamically from the backend 
+> I hear you enough working with static data and let's make stuff more dynamically from the backend
 
 > 📝 NOTE in the commited code you will find CSS I add to make thing looks nicer
 
@@ -827,8 +865,9 @@ needs, you may compose your components differently.
 
 React has some really great tools to enhance your developer experience. We'll go over a few of them here.
 
-[](#node_envdevelopment)`NODE_ENV=development`
-----------------------------------------------
+<a name="node_envdevelopment"/>
+
+## NODE_ENV=development
 
 React already has a lot of developer conveniences built into it out of the box. What's better is that they automatically strip it out when you compile your code for production.
 
@@ -836,8 +875,9 @@ So how do you get the debugging conveniences then? Well, if you're using Parcel.
 
 Why is it important that we strip the debug stuff out? The dev bundle of React is quite a bit bigger and quite a bit slower than the production build. Make sure you're compiling with the correct environmental variables or your users will suffer.
 
-[](#strict-mode)Strict Mode
----------------------------
+<a name="strict-mode"/>
+
+## Strict Mode
 
 React has a new strict mode. If you wrap your app in `<React.StrictMode></React.StrictMode>` it will give you additional warnings about things you shouldn't be doing. I'm not teaching you anything that would trip warnings from `React.StrictMode` but it's good to keep your team in line and not using legacy features or things that will be soon be deprecated.
 
@@ -845,7 +885,7 @@ Go to App.js and wrap `<App />` in the render call in `<StrictMode>`.
 
     // import at top
     import { StrictMode } from "react";
-    
+
     // replace render
     render(
       <StrictMode>
@@ -854,10 +894,12 @@ Go to App.js and wrap `<App />` in the render call in `<StrictMode>`.
       document.getElementById("root")
     );
 
-[](#dev-tools)Dev Tools
------------------------
+<a name="dev-tools"/>
+
+## Dev Tools
 
 React has wonderful dev tools that the core team maintains. They're available for both Chromium-based browsers and Firefox. They let you do several things like explore your React app like a DOM tree, modify state and props on the fly to test things out, tease out performance problems, and programtically manipulate components. Definitely worth downloading now.
+
 - [x] State and Lifecycle Methods with React"
 
 Before dig deeper and dive for getting data from the api let's clear some important concepts and make sure we understand
@@ -877,7 +919,7 @@ the code for it will be like
 ```jsx
 class App extends Component {
   // ...
-  state = {}
+  state = {};
   // ...
 }
 ```
@@ -885,10 +927,10 @@ class App extends Component {
 updated with
 
 ```jsx
-// this give you access to the previous state 
+// this give you access to the previous state
 this.setState((prevState) => ({ ... }))
 OR
-this.setState({ ... }) 
+this.setState({ ... })
 ```
 
 > 📝 props get passed to the component (similar to function parameters) and it's immutable i.e. once set the props cannot be changed,
@@ -898,8 +940,8 @@ so for now we need to statue our products in the app and initialize it with empt
 ```jsx
 class App extends Component {
   state = {
-    products: []
-  }
+    products: [],
+  };
 
   render() {
     // ...
@@ -909,10 +951,9 @@ class App extends Component {
 
 the next step will be get the data from the `API` and this will lead us to other important concept
 
+<a name="component-life-cycle"/>
 
-
-[](#component-life-cycle) The Component Lifecycle
------------------------
+## The Component Lifecycle
 
 As [ReactDOC](https://reactjs.org/docs/react-component.html)
 Each component has several “lifecycle methods” that you can override to run code at particular times in the process. You
@@ -920,49 +961,49 @@ can use [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-m
 the list below, commonly used lifecycle methods are marked as bold. The rest of them exist for relatively rare use
 cases.
 
-so there're three phases  `Mounting`, `Updating`, and `Unmounting` that every component goes through
+so there're three phases `Mounting`, `Updating`, and `Unmounting` that every component goes through
 
 let's think a little here what we need to achieve in simple words `get products and parse it to the DOM` so logically we
 are in the mounting phase there's a lot of stuff happen here but for now let foucs on `componentDidMount` which invoked
 immediately after a component is mounted (inserted into the tree). Initialization that requires DOM nodes should go
-here.  [see more](https://reactjs.org/docs/react-component.html#componentdidmount)
+here. [see more](https://reactjs.org/docs/react-component.html#componentdidmount)
 
 > If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
 
 to apply this at our code
 
 ```jsx
-import React, { Component } from 'react'
-import { getAllProduct } from './api/ProductAPI'
+import React, { Component } from 'react';
+import { getAllProduct } from './api/ProductAPI';
 
 class App extends Component {
   state = {
-    products: []
-  }
+    products: [],
+  };
 
   componentDidMount() {
     // get products
     getAllProduct().then(products => {
       if (Array.isArray(products)) {
-        this.setState({ products })
+        this.setState({ products });
       }
-    })
+    });
   }
 
   render() {
     return (
       <div>
-        <div className="product-list">
+        <div className='product-list'>
           <pre>
             <code>{JSON.stringify(this.state, null, 2)}</code>
           </pre>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
 ```
 
 - Whenever a class gets created (React or not), the constructor gets called. If you don't create a constructor, there's
@@ -983,50 +1024,50 @@ export default App
 Let's make the app use the Product Component we made
 
 ```jsx
-import React, { Component } from 'react'
-import { getAllProduct } from './api/ProductAPI'
-import Product from './Product'
+import React, { Component } from 'react';
+import { getAllProduct } from './api/ProductAPI';
+import Product from './Product';
 
 class App extends Component {
   state = {
-    products: []
-  }
+    products: [],
+  };
 
   componentDidMount() {
     // get products
     getAllProduct().then(products => {
       if (Array.isArray(products)) {
-        this.setState({ products })
+        this.setState({ products });
       }
-    })
+    });
   }
 
   render() {
     return (
       <div>
-        <div className="product-list">
+        <div className='product-list'>
           {this.state.products &&
-          this.state.products.map(product => (
-            <Product
-              title={product.title}
-              image={product.image}
-              price={product.price}
-              category={product.category}
-              description={product.description}
-            />
-          ))}
+            this.state.products.map(product => (
+              <Product
+                title={product.title}
+                image={product.image}
+                price={product.price}
+                category={product.category}
+                description={product.description}
+              />
+            ))}
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
 ```
 
 - We use map which takes a JavaScript array, takes a function, applies that function to each array item (i.e. if you
   have an array of length 15, that function gets called 15 times,) and returns a new array containing the results of
-  each of those function called. In const x = [1,2,3].map(num => { return num * 2});, x is [2,4,6]. In this case, we
+  each of those function called. In const x = [1,2,3].map(num => { return num \* 2});, x is [2,4,6]. In this case, we
   have an array of Pet data objects, and we transform those into Pet components.
 
 if you open your console now you will find `Warning: Each child in a list should have a unique "key" prop.` bcoz Key is
@@ -1048,13 +1089,12 @@ this.state.products.map(product => (
     category={product.category}
     description={product.description}
   />
-))
+));
 ```
 
-[](#why-redux) Why Redux?
------------------------
+<a name="why-redux"/>
 
-
+## Why Redux?
 
 - I think when someone says that Redux is a predictable state container it means that redux has a very strict way
   how to change the data, sometimes called unidirectional data flow.
@@ -1079,8 +1119,9 @@ this.state.products.map(product => (
   that give you insights into your application’s current state to simplify debugging or testing your application.
   It’s a great incentive to get started with Redux.
 
-[](#what-is-redux)  What is Redux?
------------------------
+<a name="what-is-redux"/>
+
+## What is Redux?
 
 - state management lib for javascript applications
 - It’s lightweight at 2KB (including dependencies), so you don’t have to worry about it making your application’s
@@ -1092,28 +1133,30 @@ this.state.products.map(product => (
   needs from this store.
 - How does it work?
   ![redux architecture](https://miro.medium.com/max/919/1*EdiFUfbTNmk_IxFDNqokqg.png)
-    - Users interact with the interface and triggers an action
-        - Action with/without payload is sent to a reducer using the dispatcher
-        - Reducer checks if it handles the action and produces a new state based on the action and its payload
-        - State changes are notified via subscription methods
-        - UI renders again based on state changes received via the subscription method
+  - Users interact with the interface and triggers an action
+    - Action with/without payload is sent to a reducer using the dispatcher
+    - Reducer checks if it handles the action and produces a new state based on the action and its payload
+    - State changes are notified via subscription methods
+    - UI renders again based on state changes received via the subscription method
 
-[](#pros-cons-of-redux)  Pros and Cons of Redux
------------------------
+<a name="pros-cons-of-redux"/>
+
+## Pros and Cons of Redux
 
 - Pros
-    - Predictable state changes
-    - Centralized state
-    - Easy Debugging
-    - Preserve page state
-    - undo/redo
-    - ecosystem
+  - Predictable state changes
+  - Centralized state
+  - Easy Debugging
+  - Preserve page state
+  - undo/redo
+  - ecosystem
 - Cons
-    - Complexity
-    - Verbosity:- you have to write boiler-plate code to get things done
-        
-[](#function-programming) Function Programming
------------------------
+  - Complexity
+  - Verbosity:- you have to write boiler-plate code to get things done
+
+<a name="function-programming"/>
+
+## Function Programming
 
 - is **a programming paradigm** in which we try to bind everything in pure mathematical functions style.
 - It is a **declarative** type of programming style. Its main focus is on “what to solve” in contrast to an **
@@ -1129,47 +1172,53 @@ this.state.products.map(product => (
   what does that really mean? What makes a function pure? So how do we know if a function is pure or not? Here is a
   very strict definition of purity
 
-    - It returns the same result if given the same arguments
-    - It does not cause any observable side effects example
+  - It returns the same result if given the same arguments
+  - It does not cause any observable side effects example
 
-      ````// impure function
-      var tip = 0;
-       function calculateTip( mealTotal ) {
-          tip = 0.15 * mealTotal;
-       }
-      calculateTip( 150 )
-      console.log(tip)
+    `````// impure function
+    var tip = 0;
+     function calculateTip( mealTotal ) {
+        tip = 0.15 * mealTotal;
+     }
+    calculateTip( 150 )
+    console.log(tip)
 
-      // pure function -> The pure function will
-      // return the exact result every time,
-      // and it doesn’t mutate any data outside of it.
-      function isPure(x,y) {
-          return x * y
-      }
-      console.log(isPure(3,5));```
-          ````
+    // pure function -> The pure function will
+    // return the exact result every time,
+    // and it doesn’t mutate any data outside of it.
+    function isPure(x,y) {
+        return x * y
+    }
+    console.log(isPure(3,5));```
+        ````
+    `````
 
-[](#function-first-class) Functions as First-Class Citizens
------------------------
+<a name="function-first-class"/>
+
+## Functions as First-Class Citizens
 
 - In JavaScript, functions are first-class objects, which means they can be:
-    - stored in a variable `let fn = function doSomething() {}`, object `let obj = { doSomething : function(){} }`,
-      or array `arr.push(function doSomething() {})`
-    - pass as an argument `doAction(function doSomething(){});`
-        - doSomething is a callback -> is a function passed as an argument to another function.
-    - return from other function
+  - stored in a variable `let fn = function doSomething() {}`, object `let obj = { doSomething : function(){} }`,
+    or array `arr.push(function doSomething() {})`
+  - pass as an argument `doAction(function doSomething(){});`
+    - doSomething is a callback -> is a function passed as an argument to another function.
+  - return from other function
 
-[](#higher-order-functions) Higher-order Functions
------------------------
+<a name="higher-order-functions"/>
+
+## Higher-order Functions
+
 - A function that accepts and/or returns another function
 
-[](#functional-composition) Functional Composition
------------------------
+<a name="functional-composition"/>
+
+## Functional Composition
 
 - is the process of combining two or more functions to produce a new function.
 
-[](#curring) Currying
------------------------
+<a name="curring"/>
+
+## Currying
 
 - is a technique of evaluating function with multiple arguments, into sequence of functions with single argument
 - is a transformation of functions that translates a function from callable as `f(a, b, c)` into callable
@@ -1178,60 +1227,70 @@ this.state.products.map(product => (
   takes the second one and returns a new function which takes the third one, and so forth, until all arguments have
   been fulfilled. That is, when we turn a function call `sum(1,2,3)` into `sum(1)(2)(3)`
 - **Why it’s useful ?**
-    - Currying helps we avoid passing the same variable again and again.
-    - It helps to create a higher order function
-        
-[](#pure-functions) Pure Functions
------------------------
+  - Currying helps we avoid passing the same variable again and again.
+  - It helps to create a higher order function
+
+<a name="pure-functions"/>
+
+## Pure Functions
+
 ![3 ways to avoid side effects](https://cdn-media-1.freecodecamp.org/images/0*4rGYQyYm_m8Byoyj.png)
+
 - we can call if the function is pure or not if passing `same args` everytime you will get `same result`
 - accept an input and returns a value without modifying any data outside its scope(Side Effects)
 - This test itself is a checklist. **A few examples of side effects are**
-    - Mutating your input
-    - console.log
-    - HTTP calls (AJAX/fetch)
-    - Changing the filesystem (fs)
-    - Querying the DOM
-    - random values
-    - current data/time
-        
-[](#immutability) Immutability
------------------------ 
+  - Mutating your input
+  - console.log
+  - HTTP calls (AJAX/fetch)
+  - Changing the filesystem (fs)
+  - Querying the DOM
+  - random values
+  - current data/time
+
+<a name="immutability"/>
+
+## Immutability
+
 - once object created, can not be changed if you need to change the object you need to take a copy first then change
   this object
 - pros
-    - Predictability
-    - Faster Change Detection
-    - Concurrency
+  - Predictability
+  - Faster Change Detection
+  - Concurrency
 - Cons
-    - Performance
-    - Memory Overhead
-      `let book = {} book.title = '...'`
-      if you building application with redux you should not mutate data because that's a fundamental principle in
-      redux
- 
-[](#updating-objects) Updating Objects
------------------------ 
+  - Performance
+  - Memory Overhead
+    `let book = {} book.title = '...'`
+    if you building application with redux you should not mutate data because that's a fundamental principle in
+    redux
+
+<a name="updating-objects"/>
+
+## Updating Objects
 
 ![shallow, deep copy](https://i.stack.imgur.com/AWKJa.jpg)
 
 - Deep copy
-    - Store copies of the object's value.
-    - Doesn't reflect changes made to the new/copied object in the original object.
+  - Store copies of the object's value.
+  - Doesn't reflect changes made to the new/copied object in the original object.
 - Shallow Copy
-    - Reflect changes made to the new/copied object in the original object
-    - Stores the copy of the original object and points the references to the objects.
-        
-[](#updating-arrays)  Updating Arrays
------------------------ 
+  - Reflect changes made to the new/copied object in the original object
+  - Stores the copy of the original object and points the references to the objects.
 
-[](#redux-flow)  Redux Data Flow Concepts
------------------------ 
+<a name="updating-arrays"/>
+
+## Updating Arrays
+
+<a name="redux-flow"/>
+
+## Redux Data Flow Concepts
+
 [Redux Data Flow Concepts](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow)
 
+<a name="redux-functions"/>
 
-[](#redux-functions)  Redux Functions
------------------------ 
+## Redux Functions
+
 - [x] Compose
 - [x] Reducer & CreateStore
 - [x] Store dispatch & Subscribe
@@ -1239,90 +1298,99 @@ this.state.products.map(product => (
 - [x] bindActionCreators
 - [x] Middleware in Redux
 
-[](#redux-react)  Redux React
------------------------ 
+<a name="redux-react"/>
+
+## Redux React
+
 - [x] Counter
 - [x] Setup Todos App
 - [x] Normalize Data -- sample [noraml-api](https://fakestoreapi.com/products)
-  , [normalize-api](https://github.com/matthieuchoplin/would-you-rather/blob/master/src/utils/_DATA.js)
-    - [Normalizing State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape)
-    - The basic concepts of normalizing data are:
-        - Each type of data gets its own "table" in the state.
-        - Each "data table" should store the individual items in an object, with the IDs of the items as keys and
-          the items themselves as the values.
-        - Any references to individual items should be done by storing the item's ID.
-        - Arrays of IDs should be used to indicate ordering.
-    - [Why You Need to Normalize Redux Data](https://outline.com/wv7ZJW)
-    - Now it is easy to update a user using this data. You can update the users without modifying any of the posts.
-      Because the posts do not change, the Post component does not need to update, only the User component does.
-      Similarly, reordering the likes only involves sorting the list of ids and does not cause each User component
-      to update. This can lead to a huge performance win if you have a lot of likes.
+      , [normalize-api](https://github.com/matthieuchoplin/would-you-rather/blob/master/src/utils/_DATA.js)
+  - [Normalizing State Shape](https://redux.js.org/recipes/structuring-reducers/normalizing-state-shape)
+  - The basic concepts of normalizing data are:
+    - Each type of data gets its own "table" in the state.
+    - Each "data table" should store the individual items in an object, with the IDs of the items as keys and
+      the items themselves as the values.
+    - Any references to individual items should be done by storing the item's ID.
+    - Arrays of IDs should be used to indicate ordering.
+  - [Why You Need to Normalize Redux Data](https://outline.com/wv7ZJW)
+  - Now it is easy to update a user using this data. You can update the users without modifying any of the posts.
+    Because the posts do not change, the Post component does not need to update, only the User component does.
+    Similarly, reordering the likes only involves sorting the list of ids and does not cause each User component
+    to update. This can lead to a huge performance win if you have a lot of likes.
 - [x] Todo App
-    - [Demo](https://ct3e9.csb.app/)
+  - [Demo](https://ct3e9.csb.app/)
 - mapDispatchToProps
-    - As the second argument passed in to connect, mapDispatchToProps is used for dispatching actions to the store.
-    - dispatch is a function of the Redux store.
-    - You call store.dispatch to dispatch an action. This is the only way to trigger a state change.
-    - With React Redux, your components never access the store directly - connect does it for you.
-    - React Redux gives you two ways to let components dispatch actions:
-        - a connected component receives props.dispatch and can dispatch actions itself.
-        - connect can accept an argument called mapDispatchToProps, which lets you create functions that dispatch
-          when called, and pass those functions as props to your component.
-    - If you don't specify the second argument to connect(), your component will receive dispatch by default. For
-      example:
-      ```
-      connect()(MyComponent)
-      // which is equivalent with
-      connect(null, null)(MyComponent)
 
-      // or
-      connect(mapStateToProps /** no second argument */)(MyComponent)
-      ```
-    - Providing a mapDispatchToProps allows you to specify which actions your component might need to dispatch.
-    - Therefore, instead of calling props.dispatch(() => increment()), you may call props.increment() directly.
-        - There are a few reasons why you might want to do that.
-            - More Declarative
-                - encapsulating the dispatch logic into function makes the implementation more declarative.
-                - Dispatching an action and letting the Redux store handle the data flow is how to implement the
-                  behavior, rather than what it does.
-                - if you define your own mapDispatchToProps, the connected component will no longer receive
-                  dispatch.
-            - Pass Down Action Dispatching Logic to ( Unconnected ) Child Components
-                - allows more components to dispatch actions, while keeping them "unaware" of Redux.
-    - connect => encapsulates the logic of talking to the Redux store and lets you not worry about it. And this is
-      what you should totally make full use of in your implementation.
-    - Two Forms of mapDispatchToProps
-        - Function form: Allows more customization
-        - Object shorthand form: More declarative and easier to use
+  - As the second argument passed in to connect, mapDispatchToProps is used for dispatching actions to the store.
+  - dispatch is a function of the Redux store.
+  - You call store.dispatch to dispatch an action. This is the only way to trigger a state change.
+  - With React Redux, your components never access the store directly - connect does it for you.
+  - React Redux gives you two ways to let components dispatch actions:
+    - a connected component receives props.dispatch and can dispatch actions itself.
+    - connect can accept an argument called mapDispatchToProps, which lets you create functions that dispatch
+      when called, and pass those functions as props to your component.
+  - If you don't specify the second argument to connect(), your component will receive dispatch by default. For
+    example:
 
-[](#middle-ware-redux)  Middle Ware Redux
------------------------ 
+    ```
+    connect()(MyComponent)
+    // which is equivalent with
+    connect(null, null)(MyComponent)
+
+    // or
+    connect(mapStateToProps /** no second argument */)(MyComponent)
+    ```
+
+  - Providing a mapDispatchToProps allows you to specify which actions your component might need to dispatch.
+  - Therefore, instead of calling props.dispatch(() => increment()), you may call props.increment() directly.
+    - There are a few reasons why you might want to do that.
+      - More Declarative
+        - encapsulating the dispatch logic into function makes the implementation more declarative.
+        - Dispatching an action and letting the Redux store handle the data flow is how to implement the
+          behavior, rather than what it does.
+        - if you define your own mapDispatchToProps, the connected component will no longer receive
+          dispatch.
+      - Pass Down Action Dispatching Logic to ( Unconnected ) Child Components
+        - allows more components to dispatch actions, while keeping them "unaware" of Redux.
+  - connect => encapsulates the logic of talking to the Redux store and lets you not worry about it. And this is
+    what you should totally make full use of in your implementation.
+  - Two Forms of mapDispatchToProps
+    - Function form: Allows more customization
+    - Object shorthand form: More declarative and easier to use
+
+<a name="middle-ware-redux"/>
+
+## Middle Ware Redux
+
 - [Middle Ware Redux](https://redux.js.org/tutorials/fundamentals/part-6-async-logic#using-the-redux-thunk-middleware)
 - [Data Flow](https://redux.js.org/assets/images/ReduxAsyncDataFlowDiagram-d97ff38a0f4da0f327163170ccc13e80.gif)
-- So far, all the data we've worked with has been directly inside of our React+Redux client application. 
+- So far, all the data we've worked with has been directly inside of our React+Redux client application.
   However, most real applications need to work with data from a server, by making HTTP API calls to fetch and save items.
 - By itself, a Redux store doesn't know anything about async logic. It only knows how to synchronously dispatch actions, update the state by calling the root reducer function, and notify the UI that something has changed. Any asynchronicity has to happen outside the store.
-- we said that Redux reducers must never contain "side effects". A "side effect" is any change to state or behavior that can be seen outside of returning a value from a function. 
+- we said that Redux reducers must never contain "side effects". A "side effect" is any change to state or behavior that can be seen outside of returning a value from a function.
 - Redux middleware were designed to enable writing logic that has side effects.
 - a Redux middleware can do anything when it sees a dispatched action: log something, modify the action, delay the action, make an async call, and more.
 - implement logger
 - What if we wrote a middleware that let us pass a function to dispatch, instead of an action object? We could have our middleware check to see if the "action" is actually a function instead, and if it's a function, call the function right away. That would let us write async logic in separate functions, outside of the middleware definition.
-    
 
-[](#thunk)  Thunk
------------------------ 
+<a name="thunk"/>
+
+## Thunk
+
 - [Thunk](https://daveceddia.com/what-is-a-thunk/)
 - thunk, n. A thunk is another word for a function. But it’s not just any old function. It’s a special (and
   uncommon) name for a function that’s returned by another. Like this:
 - function that return another function
-    ```javascript
-      function definitlyNotAThunk() {
-        // this one is a "thunk" because it defers work for later:
-        return function athunk() { // it can be named, or anonymous
-          return console.log('Hi, I am A thunk')
-        }     
-      }
-    ```
+  ```javascript
+  function definitlyNotAThunk() {
+    // this one is a "thunk" because it defers work for later:
+    return function athunk() {
+      // it can be named, or anonymous
+      return console.log('Hi, I am A thunk');
+    };
+  }
+  ```
 - You already know this pattern. You just don’t call it “thunk.” If you want to execute the “do stuff now” part, you
   have to call it like wrapper_function()() – calling it twice, basically.
 - The Major idea behind a thunk is that it's code to be executed later
@@ -1330,16 +1398,18 @@ this.state.products.map(product => (
 - Actions are just objects. As far as Redux is concerned, out of the box actions must be plain objects, and they
   must have a type property. Aside from that, they can contain whatever you want – anything you need to describe the
   action you want to perform.
+
 ```javascript
-      // regular action creator 
-      // 1. plain object
-      // 2. has a type
-      // 3. whatever else you wan
-      export const getAllItems = (items) => ({
-        type: UPDATE_ALL_ITEMS,
-        payload: { items }
-      })
+// regular action creator
+// 1. plain object
+// 2. has a type
+// 3. whatever else you wan
+export const getAllItems = items => ({
+  type: UPDATE_ALL_ITEMS,
+  payload: { items },
+});
 ```
+
 - Actions are Boring Isn’t it kind of funny that Redux’s so-called “actions” don’t actually do anything? They’re
   just objects. Plain and simple and inert.
 - Wouldn’t it be cool if you could actually make them do something? Like, say, make an API call, or trigger other
@@ -1350,30 +1420,33 @@ this.state.products.map(product => (
   bundle of work to be done.
 - It would be nice if an action creator could return that function – the bundle of work – instead of an action
   object. Something like this:
+
 ```javascript
-    function getItems() {
-      return function() {
-        return axios.get('/items');
-     };
-    }
+function getItems() {
+  return function () {
+    return axios.get('/items');
+  };
+}
 ```
+
 - If only there were some way to teach Redux how to deal with functions as actions…
 - Well, this is exactly what redux-thunk does: **it is a middleware that looks at every action that passes through
   the system, and if it’s a function, it calls that function. That’s all it does.**
 - The only thing I left out of that little code snippet is that Redux will pass two arguments to thunk functions:
   dispatch, so that they can **dispatch** new actions if they need to; and **getState**, so they can access the
   current state. So you can do things like this:
-```javascript
 
-    function getAll() {
-        return function(dispatch, getState) {
-            return axios.get('/items').then((items) => {
-                // pretend we declared an action creator
-                // called 'getITems', and now we can dispatch it
-                dispatch(getAllItems(items));
-            });
-        };
-    }
-``` 
+```javascript
+function getAll() {
+  return function (dispatch, getState) {
+    return axios.get('/items').then(items => {
+      // pretend we declared an action creator
+      // called 'getITems', and now we can dispatch it
+      dispatch(getAllItems(items));
+    });
+  };
+}
+```
+
 - the getState function can be useful for deciding whether to fetch new data, or return a cached result, depending
   on the current state.
