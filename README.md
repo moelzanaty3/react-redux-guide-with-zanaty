@@ -16,10 +16,8 @@ every tutorial started on step 14 and left out the steps 1-13 of how to set up a
 - [NPM/Yarn scripts](#npmyarn-scripts)
 - [JSX](#JSX)
 - [Component Composition](#component-composition)
-- [NODE_ENV=development](#node_envdevelopment)
-- [Strict Mode](#strict-mode)
-- [Dev Tools](#dev-tools)
-- [The Component Lifecycle](#component-life-cycle)
+- [React Dev Tools](#react-dev-tool)
+- [State and Lifecycle Methods with React](#component-life-cycle)
 - [Why Redux?](#why-redux)
 - [What is Redux?](#what-is-redux)
 - [Pros and Cons of Redux](#pros-cons-of-redux)
@@ -696,32 +694,24 @@ for example here in our application the `Product` component. each product will h
 product including title, price, image and description etc...
 
 ```jsx
-// Product Card Component
-const ProductCard = props => {
-  return (
-    <div className='card'>
-      <img src={props.image} />
-      <ProductInfo {...props} />
-      ...
-    </div>
-  );
-};
 // Product Info Component
-const ProductInfo = ({ title, description, price, category }) => {
+const ProductInfo = ({ id, title, description, price, category }) => {
   return (
-    <div className='product'>
-      <h1 className='product__title'>{title}</h1>
-      <ProductCategoryAndPrice price={price} category={category} />
-      />
-      <p className='product__description'>{description}</p>
+    <div className='product-details'>
+      <Link to={`product/${id}`}>
+        <h3 className='product-title'>{title}</h3>
+      </Link>
+
+      <ProductPriceCategory price={price} category={category} />
+      <p className='product-description'>{description}</p>
     </div>
   );
 };
 
 // ProductCategory And PriceComponent
-const ProductInfo = ({ price, category }) => {
+const ProductPriceCategory = ({ price, category }) => {
   return (
-    <div>
+    <div className='product-meta'>
       <h4 className='product__price'>{price}</h4>
       <p className='product__category'>{category}</p>
     </div>
@@ -736,19 +726,31 @@ through props.
 // Card.js
 import React from 'react';
 
-const Card = props => {
+// Product Card Component
+const Product = props => {
   return (
     <div className='product'>
-      {props.image && (
-        <img src={props.image} className='product-avatar' alt={`product of ${props.title}`} />
+      {props.product.image && (
+        <img
+          src={props.product.image}
+          className='product-avatar'
+          alt={`product of ${props.product.title}`}
+        />
       )}
-      <div className='product-details'>{props.children}</div>
-      <div className='product-remove'>remove</div>
+      {props.children}
+      <div
+        className='product-remove'
+        onClick={() => {
+          props.onDeleteProduct(props.product.id);
+        }}
+      >
+        remove
+      </div>
     </div>
   );
 };
 
-export default Card;
+export default Product;
 ```
 
 so now before we continue I have a question
@@ -783,20 +785,24 @@ so let's back to our code and create a product card in `Product.js`
 
 ```jsx
 import React from 'react';
-import Card from './Card';
 
-const Product = props => {
+const Product = ({ title, image, description, price, category }) => {
   return (
-    <Card title={props.title} image={props.image}>
-      <h3 className='product-title'>{props.title}</h3>
-      <div className='product-meta'>
-        <p className='product-price'>{props.price}</p>
-        <p className='product-category'>{props.category}</p>
+    <div className='product'>
+      {image && <img src={image} className='product-avatar' alt={`product of ${title}`} />}
+      <div className='product-details'>
+        <h3 className='product-title'>{title}</h3>
+        <div className='product-meta'>
+          <p className='product-price'>{price}</p>
+          <p className='product-category'>{category}</p>
+        </div>
+        <p className='product-description'>{description}</p>
       </div>
-      <p className='product-description'>{props.description}</p>
-    </Card>
+      <div className='product-remove'>remove</div>
+    </div>
   );
 };
+
 export default Product;
 ```
 
@@ -861,13 +867,13 @@ needs, you may compose your components differently.
 
 > 📝 NOTE in the commited code you will find CSS I add to make thing looks nicer
 
-- [x] React Dev Tools
+<a name="react-dev-tool"/>
+
+## React Dev Tools
 
 React has some really great tools to enhance your developer experience. We'll go over a few of them here.
 
-<a name="node_envdevelopment"/>
-
-## NODE_ENV=development
+### NODE_ENV=development
 
 React already has a lot of developer conveniences built into it out of the box. What's better is that they automatically strip it out when you compile your code for production.
 
@@ -875,32 +881,32 @@ So how do you get the debugging conveniences then? Well, if you're using Parcel.
 
 Why is it important that we strip the debug stuff out? The dev bundle of React is quite a bit bigger and quite a bit slower than the production build. Make sure you're compiling with the correct environmental variables or your users will suffer.
 
-<a name="strict-mode"/>
-
-## Strict Mode
+### Strict Mode
 
 React has a new strict mode. If you wrap your app in `<React.StrictMode></React.StrictMode>` it will give you additional warnings about things you shouldn't be doing. I'm not teaching you anything that would trip warnings from `React.StrictMode` but it's good to keep your team in line and not using legacy features or things that will be soon be deprecated.
 
-Go to App.js and wrap `<App />` in the render call in `<StrictMode>`.
+Go to `App.js` and wrap `<App />` in the render call in `<StrictMode>`.
 
-    // import at top
-    import { StrictMode } from "react";
+```jsx
+// import at top
+import { StrictMode } from "react";
 
-    // replace render
-    render(
-      <StrictMode>
-        <App />
-      </StrictMode>,
-      document.getElementById("root")
-    );
+// replace render
+render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+  document.getElementById("root")
+);
+```
 
-<a name="dev-tools"/>
-
-## Dev Tools
+### Dev Tools
 
 React has wonderful dev tools that the core team maintains. They're available for both Chromium-based browsers and Firefox. They let you do several things like explore your React app like a DOM tree, modify state and props on the fly to test things out, tease out performance problems, and programtically manipulate components. Definitely worth downloading now.
 
-- [x] State and Lifecycle Methods with React"
+<a name="component-life-cycle"/>
+
+## State and Lifecycle Methods with React
 
 Before dig deeper and dive for getting data from the api let's clear some important concepts and make sure we understand
 it well one of these important concepts is `state` so what's the state
@@ -951,9 +957,7 @@ class App extends Component {
 
 the next step will be get the data from the `API` and this will lead us to other important concept
 
-<a name="component-life-cycle"/>
-
-## The Component Lifecycle
+### The Component Lifecycle
 
 As [ReactDOC](https://reactjs.org/docs/react-component.html)
 Each component has several “lifecycle methods” that you can override to run code at particular times in the process. You
