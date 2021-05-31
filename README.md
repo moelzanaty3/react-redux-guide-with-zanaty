@@ -1,14 +1,15 @@
 # Welcome to react-guide-with-zanaty.
 
-This course is unique as compared to other React introductions because this course attempts to teach you not only
-React, but the ecosystem around React. When I was learning React myself, I found myself frustrated that it seemed like
-every tutorial started on step 14 and left out the steps 1-13 of how to set up a React project.
+This notes I suppose it's unique to other react introductions as I will teach you not only
+React, but the ecosystem around React. When I was learning to React myself, I found myself frustrated that it seemed like
+every tutorial started on step 14 and left out steps 1-13 of how to set up a React project. with some of my thoughts and other good articles mentioned 
 
 ## Table of Contents
 
 - [Intro](#intro)
 - [Who Am I?](#who-am-i)
 - [What's is reactjs?](#what-react-js)
+- [What's the problems that React solve ?](#problems-that-react-solve)
 - [Pure React](#pure-react)
 - [NPM](#npm)
 - [Scaffolding Your React App](#create-react-app)
@@ -40,13 +41,13 @@ every tutorial started on step 14 and left out the steps 1-13 of how to set up a
 
 ## Intro
 
-- React is nearly never used by itself so it's useful to know the tools you're using. **I believe you as a developer
-  should know how your tools works and what purpose they're serving.** Many times have I taught courses similar to this
-  one to hear people using tools and complaining about them because they don't actually know why they're using them,
-  just that they're necessary. As such, in this course we show you how to build projects without any using tools at all
-  and introduce the various tools, one at a time so you understand the actual problem being solved by the tool.
-  Hopefully given the knowledge of the problem solved by the tool you'll embrace the tools despite their complexities
-  due to the ease and power they offer you.
+React is nearly never used by itself so it's useful to know the tools you're using. **I believe you as a developer
+should know how your tools works and what purpose they're serving.** Many times have I taught courses similar to this
+one to hear people using tools and complaining about them because they don't actually know why they're using them,
+just that they're necessary. As such, in this course we show you how to build projects without any using tools at all
+and introduce the various tools, one at a time so you understand the actual problem being solved by the tool.
+Hopefully given the knowledge of the problem solved by the tool you'll embrace the tools despite their complexities
+due to the ease and power they offer you.
 
 ###### **Throughout the course you'll see something like this:**
 
@@ -70,25 +71,22 @@ every tutorial started on step 14 and left out the steps 1-13 of how to set up a
 
 ![Mohammed Elzanaty](https://avatars.githubusercontent.com/u/16934778?s=400&u=687f93e3b54916c911b232b55fd46f31e944beae&v=4)
 
-- My name is **Mohammed Elzanaty.** I'm presently (as of writing) a Senior Software Engineer at Vodafone International
-  Services and Nano Degree Frontend Lead at Udacity.
+- My name is **Mohammed Elzanaty.** I'm presently (as of writing) a Senior Software Engineer at [Vodafone International
+  Services](https://www.vodafone.com/) and Nano Degree Frontend Lead at [Udacity](https://www.udacity.com/).
 - I have developed a wide range of projects for small and large companies, I have enormous amounts of experience working
   on different projects around the world.
 - I've delivered workshops and talks for web technologies. I have also +1500 hours of teaching because I love teaching,
   entertaining, and informing. Reach out and see if I can help you with your conference or training.
-- Previous to that, I was a senior or staff JavaScript at Evolvice GmbH and others.
+- Previous to that, I was a senior or staff JavaScript at [Evolvice GmbH](https://www.evolvice.de/en/) and others software companies.
 - My biggest passions in life are people and experiences. I hope by going  
   through this course that it can improve your life in some meaningful way and that you in turn can improve someone
   else's life.
-- My beautiful wife, and I live in a city called Tur Sina, South Sina in Egypt.
+- My beautiful wife, and I live in a city called [Sharm Al Shiekh, South Sina](https://www.google.com/maps/place/Sharm+Al+Shiekh,+South+Sinai+Governorate/@27.8887765,34.29756,11.96z/data=!4m13!1m7!3m6!1s0x1453382c1ee3f6fd:0x59cc0e44682197f8!2sSharm+Al+Shiekh,+South+Sinai+Governorate!3b1!8m2!3d27.9333725!4d34.3421397!3m4!1s0x1453382c1ee3f6fd:0x59cc0e44682197f8!8m2!3d27.9333725!4d34.3421397) in Egypt.
 - I like travelling, reading and fixing bugs
 
-Please catch up with me on social media, would love to chat: [Twitter](https://twitter.com/mohammdelzanaty)
-, [GitHub](https://github.com/mohammedelzanaty), [LinkedIn](https://www.linkedin.com/in/mohammedelzanaty129/)
+Please catch up with me on social media, would love to chat: [Twitter](https://twitter.com/mohammdelzanaty) - [LinkedIn](https://www.linkedin.com/in/mohammedelzanaty129/)
 
-###### **Why was this course created?**
-
-<img src="https://d20vrrgs8k4bvw.cloudfront.net/images/open-graph/udacity.png" width="50%" alt="udacity">
+###### **Why was this notes created?**
 
 - I love to teach. It's a challenging task that forces you to peel back all the knowledge you've gained so you can
   approach someone who lacks the same experience and terminology you have. It forces you to take amorphous concepts
@@ -96,11 +94,7 @@ Please catch up with me on social media, would love to chat: [Twitter](https://t
   your gaps in knowledge because you'll begin to question things you know others will question. For me to ever master a
   concept, I have to teach it to someone else.
 
-- And hey, if you could take a second
-  and [star the repo on GitHub](https://github.com/mohammedelzanaty/react-redux-udacity-sessions)
-  I'd be super appreciative. It helps me reach more people.
-
-most of this lovely material inspired from our lovely instructor [btholt](https://www.linkedin.com/in/btholt)
+- And hey, if you could take a second to [![star the repo](https://img.shields.io/github/stars/mohammedelzanaty/react-redux-guide-with-zanaty?style=social&label=Star&maxAge=2592000)](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty) and [![Fork It and Play](https://img.shields.io/github/forks/mohammedelzanaty/react-redux-guide-with-zanaty.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/Naereen/StrapDown.js/network/) I'd be super appreciative. It helps me reach more people.
 
 it's been a long time that I want to take a chance to write about one of my fav things in my life which it's react, of
 course, react... so let's first start by
@@ -118,16 +112,51 @@ As described
    a base in the development of single-page or mobile applications, as it is optimal for fetching rapidly changing data
    that needs to be recorded.
 
-so after we know simple definitions about react let's dive into **Why I Luv react and why it's really awesome ?!!!**
+form the above definitions we noticed that React it's javascript library and this make me ask you
 
+### What's? different between library and framework ?
+
+Both libraries and frameworks are reusable code written by someone else. Their purpose is to help you solve common problems in easier ways.
+
+We can use a house as a metaphor to explain the difference between these concepts.
+
+1. [Library](https) is like building your home from scratch, you have the choice to make your house as you wish, with any architecture you like, you can sort your rooms in the way you like.
+2. [Framework](https) is like buying a new house, you don’t have to deal with building problems, but you can’t choose how to sort your rooms because the house is already built.
+
+![difference between library and framework](https://miro.medium.com/max/640/1*tMJUTqe2dKlueiNU17IZug.png)
+#### The Technical Difference
+
+The technical difference between a framework and library lies in a term called inversion of control. When you use a library, you are in charge of the application flow. You choose when and where to call the library. When you use a framework, the framework is in charge of the flow. It provides you with a few places to plug in your code, but it calls the code you plugged in as needed.
+
+☕ ⁉️ 🙋🏻 🙋🏼 [COFFE TIME](https://ahaslides.com/ZANATYCT) ➡️ [Q1 - Q7]
+
+
+<a name="problems-that-react-solve"/>
+
+## What's the problems that React solve ? 
+<ol>
+  <li>UI Complexity -> solved by Declarative Code</li>
+  <li>Messy Data Flow -> solved by Unidirectional Data Flow</li>
+  <li>Slow DOM Operations -> solved by virual-dom-diffing</li>
+  <li>Repetitive Code -> solved by Reusable components</li>
+</ol>
+
+
+so after we know simple definitions about react and know the problems let's dive into solutions
+
+![https://xbsoftware.com/blog/why-react-awesome-app-dev/](https://xbsoftware.com/wp-content/uploads/2016/04/why-react-awesome.jpg)
 ### Composition
 
-In programming... The composition is combining simple functions to build a more complicated one.
+In programming... The composition is about creating small functions and creating bigger and more complete functions with them. Think of a function as a brick, composition is how you would make those bricks work together to build a wall or a house.
 
-Let's think of composition with another way In
-mathematics, [Function Composition](https://en.wikipedia.org/wiki/Function_composition) is an operation that takes two
-functions `f` and g and produces a function h such that `h(x) = g(f(x))` In this operation, the function `g` is applied to the result of applying the function _f_ to _x_. That is, the
-functions `f : X → Y and g : Y → Z` are **composed** to yield a function that maps `x in X to g(f(x)) in Z`.
+Let's think of composition with another way In mathematics, [Function Composition](https://en.wikipedia.org/wiki/Function_composition) is an operation that takes two functions `f` and g and produces a function h such that `h(x) = g(f(x))` In this operation, the function `g` is applied to the result of applying the function _f_ to _x_. That is, the functions `f : X → Y and g : Y → Z` are **composed** to yield a function that maps `x in X to g(f(x)) in Z`.
+
+You might have encoutered composition in mathematics, written like so: f(g(x)). The function f is composed with the function g of x. Or f after g equals f of g of x. After because we evaluate the functions from right to left, from the inside to the outside:
+
+f <-- g <-- x
+
+The output of the precedent function becomes the input of the next. x is the input of g. The output of g(x) becomes the f input.
+
 
 I see that things might go to be more complicated so now let's take an example,
 using [map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to create a
@@ -170,13 +199,31 @@ const excitedPeople = people.map(name => name + '!');
 
 > **Declarative code**, instructs code for what we want to be done, and let code take care of performing the steps.
 
-### Unidirectional Data Flow
+### [Unidirectional Data Flow](https://flaviocopes.com/react-unidirectional-data-flow/)
 
 In general, this concept means that data has one, and only one, way to be transferred to other parts of the application.
 
-In React, the data flows from the parent component to a child component. so data flows in only one direction Parent =>
-Child. If data is shared between sibling child components, then the data should be stored in the parent component and
-passed to both of the child components that need it.
+In React this means that:
+
+* state is passed to the view and to child components
+* actions are triggered by the view
+* actions can update the state
+* the state change is passed to the view and to child components
+
+![view-actions-state](https://flaviocopes.com/react-unidirectional-data-flow/view-actions-state.png)
+
+The view is a result of the application state. State can only change when actions happen. When actions happen, the state is updated.
+
+Thanks to one-way bindings, data cannot flow in the opposite way (as would happen with two-way bindings, for example), and this has some key advantages:
+
+it’s less error prone, as you have more control over your data
+it’s easier to debug, as you know what is coming from where
+it’s more efficient, as the library already knows what the boundaries are of each part of the system
+A state is always owned by one Component. Any data that’s affected by this state can only affect Components below it: its children.
+
+Changing state on a Component will never affect its parent, or its siblings, or any other Component in the application: just its children.
+
+This is the reason that the state is often moved up in the Component tree, so that it can be shared between components that need to access it.
 
 ### [Virtual DOM](https://reactjs.org/docs/optimizing-performance.html#avoid-reconciliation)
 
@@ -186,8 +233,20 @@ The _Virtual DOM_ is an abstraction of the HTML DOM. It is lightweight and detac
 implementation details. Since the DOM itself was already an abstraction, the virtual DOM is, in fact, an abstraction of
 an abstraction.
 
-The Virtual DOM reflects a tree in which each node is an HTML element. React is able to traverse and carry out
+The [Virtual DOM](https://dev.to/koolkishan/what-is-virtual-dom-how-virtual-dom-works-what-is-reconciliation-what-is-diffing-algorithm-what-makes-react-so-fast-327a) reflects a tree in which each node is an HTML element. React is able to traverse and carry out
 operations on this Virtual DOM, saving our app from having "costly" activity on the actual DOM.
+
+In simple words, virtual DOM is just a copy of the original DOM kept in the memory and synced with the real DOM by libraries such as ReactDOM. This process is called Reconciliation. 
+
+Virtual DOM has the same properties that of the Real DOM, but it lacks the power to directly change the content of the screen.
+
+Think of Virtual DOM as the blueprint of a machine, changes made to the blueprint doesn't reflects on the machine itself.
+
+So when there is a update in the virtual DOM, react compares the virtual DOM with a snapshot of the virtual DOM taken right before the update of the virtual DOM.
+
+With the help of this comparison React figures out which components in the UI needs to be updated. This process is called diffing. The algorithm that is used for the diffing process is called as the diffing algorithm.
+
+Once React knows which components has been updated, then it replaces the original DOM nodes with the updated DOM node.
 
 ![No alt text provided for this image](https://media-exp1.licdn.com/dms/image/C5612AQFbwsKzJw4v2A/article-inline_image-shrink_1000_1488/0/1565018330860?e=1622678400&v=beta&t=LrGecxs5TAlZyZnSwzPb7CZwLqzomp3-yuqGKT-o4kw)
 
@@ -723,7 +782,7 @@ so we can do this better here to reduce the nested structure by using `props.chi
 through props.
 
 ```jsx
-// Card.js
+// Product.js
 import React from 'react';
 
 // Product Card Component
@@ -755,7 +814,7 @@ export default Product;
 
 so now before we continue I have a question
 
-#### **What's Children**
+#### **[What's Children](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)**
 
 The React docs say that you can use `props.children` on components that represent `generic boxes`
 and that ‘don’t know their children ahead of time’. For me, that did not really clear things up. I’m sure for some, that
@@ -889,20 +948,23 @@ Go to `App.js` and wrap `<App />` in the render call in `<StrictMode>`.
 
 ```jsx
 // import at top
-import { StrictMode } from "react";
+import { StrictMode } from 'react';
 
 // replace render
 render(
   <StrictMode>
     <App />
   </StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 ```
 
 ### Dev Tools
 
 React has wonderful dev tools that the core team maintains. They're available for both Chromium-based browsers and Firefox. They let you do several things like explore your React app like a DOM tree, modify state and props on the fly to test things out, tease out performance problems, and programtically manipulate components. Definitely worth downloading now.
+
+
+☕ ⁉️ 🙋🏻 🙋🏼 [COFFE TIME](https://ahaslides.com/ZANATYCT) ➡️ [Q8 - 13]
 
 <a name="component-life-cycle"/>
 
