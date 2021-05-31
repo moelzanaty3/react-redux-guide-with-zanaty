@@ -1,6 +1,6 @@
 # Welcome to react-guide-with-zanaty.
 
-This course is unique as compared to other React introductions because this course attempts to teach you not only
+This notes I suppose it's unique to other react introductions as I will teach you not only
 React, but the ecosystem around React. When I was learning React myself, I found myself frustrated that it seemed like
 every tutorial started on step 14 and left out the steps 1-13 of how to set up a React project.
 
@@ -40,13 +40,13 @@ every tutorial started on step 14 and left out the steps 1-13 of how to set up a
 
 ## Intro
 
-- React is nearly never used by itself so it's useful to know the tools you're using. **I believe you as a developer
-  should know how your tools works and what purpose they're serving.** Many times have I taught courses similar to this
-  one to hear people using tools and complaining about them because they don't actually know why they're using them,
-  just that they're necessary. As such, in this course we show you how to build projects without any using tools at all
-  and introduce the various tools, one at a time so you understand the actual problem being solved by the tool.
-  Hopefully given the knowledge of the problem solved by the tool you'll embrace the tools despite their complexities
-  due to the ease and power they offer you.
+React is nearly never used by itself so it's useful to know the tools you're using. **I believe you as a developer
+should know how your tools works and what purpose they're serving.** Many times have I taught courses similar to this
+one to hear people using tools and complaining about them because they don't actually know why they're using them,
+just that they're necessary. As such, in this course we show you how to build projects without any using tools at all
+and introduce the various tools, one at a time so you understand the actual problem being solved by the tool.
+Hopefully given the knowledge of the problem solved by the tool you'll embrace the tools despite their complexities
+due to the ease and power they offer you.
 
 ###### **Throughout the course you'll see something like this:**
 
@@ -70,25 +70,22 @@ every tutorial started on step 14 and left out the steps 1-13 of how to set up a
 
 ![Mohammed Elzanaty](https://avatars.githubusercontent.com/u/16934778?s=400&u=687f93e3b54916c911b232b55fd46f31e944beae&v=4)
 
-- My name is **Mohammed Elzanaty.** I'm presently (as of writing) a Senior Software Engineer at Vodafone International
-  Services and Nano Degree Frontend Lead at Udacity.
+- My name is **Mohammed Elzanaty.** I'm presently (as of writing) a Senior Software Engineer at [Vodafone International
+  Services](https://www.vodafone.com/) and Nano Degree Frontend Lead at [Udacity](https://www.udacity.com/).
 - I have developed a wide range of projects for small and large companies, I have enormous amounts of experience working
   on different projects around the world.
 - I've delivered workshops and talks for web technologies. I have also +1500 hours of teaching because I love teaching,
   entertaining, and informing. Reach out and see if I can help you with your conference or training.
-- Previous to that, I was a senior or staff JavaScript at Evolvice GmbH and others.
+- Previous to that, I was a senior or staff JavaScript at [Evolvice GmbH](https://www.evolvice.de/en/) and others software companies.
 - My biggest passions in life are people and experiences. I hope by going  
   through this course that it can improve your life in some meaningful way and that you in turn can improve someone
   else's life.
-- My beautiful wife, and I live in a city called Tur Sina, South Sina in Egypt.
+- My beautiful wife, and I live in a city called [Sharm Al Shiekh, South Sina](https://www.google.com/maps/place/Sharm+Al+Shiekh,+South+Sinai+Governorate/@27.8887765,34.29756,11.96z/data=!4m13!1m7!3m6!1s0x1453382c1ee3f6fd:0x59cc0e44682197f8!2sSharm+Al+Shiekh,+South+Sinai+Governorate!3b1!8m2!3d27.9333725!4d34.3421397!3m4!1s0x1453382c1ee3f6fd:0x59cc0e44682197f8!8m2!3d27.9333725!4d34.3421397) in Egypt.
 - I like travelling, reading and fixing bugs
 
-Please catch up with me on social media, would love to chat: [Twitter](https://twitter.com/mohammdelzanaty)
-, [GitHub](https://github.com/mohammedelzanaty), [LinkedIn](https://www.linkedin.com/in/mohammedelzanaty129/)
+Please catch up with me on social media, would love to chat: [Twitter](https://twitter.com/mohammdelzanaty) - [LinkedIn](https://www.linkedin.com/in/mohammedelzanaty129/)
 
-###### **Why was this course created?**
-
-<img src="https://d20vrrgs8k4bvw.cloudfront.net/images/open-graph/udacity.png" width="50%" alt="udacity">
+###### **Why was this notes created?**
 
 - I love to teach. It's a challenging task that forces you to peel back all the knowledge you've gained so you can
   approach someone who lacks the same experience and terminology you have. It forces you to take amorphous concepts
@@ -96,11 +93,7 @@ Please catch up with me on social media, would love to chat: [Twitter](https://t
   your gaps in knowledge because you'll begin to question things you know others will question. For me to ever master a
   concept, I have to teach it to someone else.
 
-- And hey, if you could take a second
-  and [star the repo on GitHub](https://github.com/mohammedelzanaty/react-redux-udacity-sessions)
-  I'd be super appreciative. It helps me reach more people.
-
-most of this lovely material inspired from our lovely instructor [btholt](https://www.linkedin.com/in/btholt)
+- And hey, if you could take a second to [![star the repo](https://img.shields.io/github/stars/mohammedelzanaty/react-redux-guide-with-zanaty?style=social&label=Star&maxAge=2592000)](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty) and [![Fork It and Play](https://img.shields.io/github/forks/mohammedelzanaty/react-redux-guide-with-zanaty.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/Naereen/StrapDown.js/network/) I'd be super appreciative. It helps me reach more people.
 
 it's been a long time that I want to take a chance to write about one of my fav things in my life which it's react, of
 course, react... so let's first start by
@@ -118,8 +111,25 @@ As described
    a base in the development of single-page or mobile applications, as it is optimal for fetching rapidly changing data
    that needs to be recorded.
 
+form the above definitions we noticed that React it's javascript library and this make me ask you
+
+### What's? different between library and framework ?
+
+Both libraries and frameworks are reusable code written by someone else. Their purpose is to help you solve common problems in easier ways.
+
+We can use a house as a metaphor to explain the difference between these concepts.
+
+1. [Library](https) is like building your home from scratch, you have the choice to make your house as you wish, with any architecture you like, you can sort your rooms in the way you like.
+2. [Framework](https) is like buying a new house, you don’t have to deal with building problems, but you can’t choose how to sort your rooms because the house is already built.
+
+![difference between library and framework](https://miro.medium.com/max/640/1*tMJUTqe2dKlueiNU17IZug.png)
+#### The Technical Difference
+
+The technical difference between a framework and library lies in a term called inversion of control. When you use a library, you are in charge of the application flow. You choose when and where to call the library. When you use a framework, the framework is in charge of the flow. It provides you with a few places to plug in your code, but it calls the code you plugged in as needed.
+
 so after we know simple definitions about react let's dive into **Why I Luv react and why it's really awesome ?!!!**
 
+![https://xbsoftware.com/blog/why-react-awesome-app-dev/](https://xbsoftware.com/wp-content/uploads/2016/04/why-react-awesome.jpg)
 ### Composition
 
 In programming... The composition is combining simple functions to build a more complicated one.
@@ -889,14 +899,14 @@ Go to `App.js` and wrap `<App />` in the render call in `<StrictMode>`.
 
 ```jsx
 // import at top
-import { StrictMode } from "react";
+import { StrictMode } from 'react';
 
 // replace render
 render(
   <StrictMode>
     <App />
   </StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 ```
 
