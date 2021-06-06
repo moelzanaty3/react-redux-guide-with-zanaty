@@ -1,43 +1,56 @@
-# Welcome to react-guide-with-zanaty.
+> This notes I suppose it's unique to other react introductions as I will teach you not only React, but the ecosystem around React. When I was learning to React myself, I found myself frustrated that it seemed like every tutorial started on step 14 and left out steps 1-13 of how to set up a React project. with some of my thoughts and other good articles mentioned
 
-This notes I suppose it's unique to other react introductions as I will teach you not only
-React, but the ecosystem around React. When I was learning to React myself, I found myself frustrated that it seemed like
-every tutorial started on step 14 and left out steps 1-13 of how to set up a React project. with some of my thoughts and other good articles mentioned
-
-## Table of Contents
+___Table of Contents___
 
 - [Intro](#intro)
+- [Instructions](#instructions)
 - [Who Am I?](#who-am-i)
-- [What's is reactjs?](#what-react-js)
-- [What's the problems that React solve ?](#problems-that-react-solve)
+- [Why I am writing this?](#why-i-am-writing-this)
+- [What's is ReactJS?](#whats-is-reactjs)
+  - [What's the difference between Library and Framework?](#whats-the-difference-between-library-and-framework)
+  - [What's the problems that React solve ?](#whats-the-problems-that-react-solve-)
+    - [Composition](#composition)
+    - [Declarative Code](#declarative-code)
+    - [Unidirectional Data Flow](#unidirectional-data-flow)
+    - [Virtual DOM](#virtual-dom)
+    - [The Diffing Algorithm](#the-diffing-algorithm)
 - [Pure React](#pure-react)
 - [NPM](#npm)
-- [Scaffolding Your React App](#create-react-app)
+  - [MacOS](#macos)
+  - [Windows](#windows)
+  - [Linux](#linux)
+- [Scaffolding Your React App](#scaffolding-your-react-app)
+  - [**Set up the API file we will use to make more focus on react**](#set-up-the-api-file-we-will-use-to-make-more-focus-on-react)
 - [Code Quality](#code-quality)
-- [NPM/Yarn scripts](#npmyarn-scripts)
-- [JSX](#JSX)
+- [NPM/Yarn Scripts](#npmyarn-scripts)
+- [JSX](#jsx)
 - [Component Composition](#component-composition)
-- [React Dev Tools](#react-dev-tool)
-- [State and Lifecycle Methods with React](#component-life-cycle)
+  - [**What's Composition**](#whats-composition)
+  - [**What's Props Children**](#whats-props-children)
+- [React Dev Tools](#react-dev-tools)
+  - [NODE_ENV=development](#node_envdevelopment)
+  - [Strict Mode](#strict-mode)
+  - [Dev Tools](#dev-tools)
+- [State and Lifecycle Methods with React](#state-and-lifecycle-methods-with-react)
+  - [**State**](#state)
+  - [The Component Lifecycle](#the-component-lifecycle)
 - [Why Redux?](#why-redux)
 - [What is Redux?](#what-is-redux)
-- [Pros and Cons of Redux](#pros-cons-of-redux)
+- [Pros and Cons of Redux](#pros-and-cons-of-redux)
 - [Function Programming](#function-programming)
-- [Functions as First-Class Citizens](#function-first-class)
+- [Functions as First-Class Citizens](#functions-as-first-class-citizens)
 - [Higher-order Functions](#higher-order-functions)
 - [Functional Composition](#functional-composition)
-- [Currying](#curring)
+- [Currying](#currying)
 - [Pure Functions](#pure-functions)
 - [Immutability](#immutability)
 - [Updating Objects](#updating-objects)
 - [Updating Arrays](#updating-arrays)
-- [Redux Data Flow Concepts](#redux-flow)
+- [Redux Data Flow Concepts](#redux-data-flow-concepts)
 - [Redux Functions](#redux-functions)
 - [Redux React](#redux-react)
 - [Middle Ware Redux](#middle-ware-redux)
 - [Thunk](#thunk)
-
-<a name="intro"/>
 
 ## Intro
 
@@ -49,14 +62,14 @@ and introduce the various tools, one at a time so you understand the actual prob
 Hopefully given the knowledge of the problem solved by the tool you'll embrace the tools despite their complexities
 due to the ease and power they offer you.
 
-###### **Throughout the course you'll see something like this:**
+## Instructions
 
-💎 `<link to the current state of the code>`
+- Throughout the course you'll see something like this
+  > 💎 `<link to the current state of the code>`
 
 - This is a point where I have stopped and committed this to a repo. If you fall behind, get stuck, or just want to skip
   ahead, just use git and check out that commit!
-- You can also go explore the those commits on GitHub too to see what they look like.
-  The [repo is here](https://github.com/mohammedelzanaty/react-guide-with-zanaty).
+- You can also go explore the those commits on GitHub too to see what they look like from [here](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty/commits/main).
 
 - if you have no idea about how to use git so well, let me recommend to you resources to learn it.
   - **Git** is definitely a tool worth investing time into; while it may seem boring and take a lot of time and energy
@@ -65,18 +78,15 @@ due to the ease and power they offer you.
     - [Version Control with Git by Udacity](https://www.udacity.com/course/version-control-with-git--ud123)
     - [Git Handbook](https://guides.github.com/introduction/git-handbook/)
 
-<a name="who-am-i"/>
-
 ## Who Am I?
 
-![Mohammed Elzanaty](https://avatars.githubusercontent.com/u/16934778?s=400&u=687f93e3b54916c911b232b55fd46f31e944beae&v=4)
+<img src="https://avatars.githubusercontent.com/u/16934778?s=400&u=687f93e3b54916c911b232b55fd46f31e944beae&v=4" width="250" alt="mohammed elzanaty" align="right"/>
 
-- My name is **Mohammed Elzanaty.** I'm presently (as of writing) a Senior Software Engineer at [Vodafone International
-  Services](https://www.vodafone.com/) and Nano Degree Frontend Lead at [Udacity](https://www.udacity.com/).
-- I have developed a wide range of projects for small and large companies, I have enormous amounts of experience working
+Hey 👋  I am [**Mohammed Elzanaty.**](https://www.linkedin.com/in/mohammedelzanaty129/) a passionate teaching-lover, developer, writer, and autodidact. I'm presently (as of writing) a Senior Software Engineer at [Vodafone International Services](https://www.vodafone.com/) and Nano Degree Frontend Lead at [Udacity](https://www.udacity.com/).
+
+- Developed a wide range of projects for small and large companies, I have enormous amounts of experience working
   on different projects around the world.
-- I've delivered workshops and talks for web technologies. I have also +1500 hours of teaching because I love teaching,
-  entertaining, and informing. Reach out and see if I can help you with your conference or training.
+- Delivered workshops and talks for web technologies. I have about +1500 hours of teaching because I love teaching, entertaining, and informing. fell free to [Reach me out to see if I can help you with your conference or training](mailto:mohammedelzanaty129@gmail.com)
 - Previous to that, I was a senior or staff JavaScript at [Evolvice GmbH](https://www.evolvice.de/en/) and others software companies.
 - My biggest passions in life are people and experiences. I hope by going  
   through this course that it can improve your life in some meaningful way and that you in turn can improve someone
@@ -86,22 +96,16 @@ due to the ease and power they offer you.
 
 Please catch up with me on social media, would love to chat: [Twitter](https://twitter.com/mohammdelzanaty) - [LinkedIn](https://www.linkedin.com/in/mohammedelzanaty129/)
 
-###### **Why was this notes created?**
+## Why I am writing this?
 
-- I love to teach. It's a challenging task that forces you to peel back all the knowledge you've gained so you can
-  approach someone who lacks the same experience and terminology you have. It forces you to take amorphous concepts
-  floating in your brain and crystalize them into solid concepts that you can describe. It forces you to acknowledge
-  your gaps in knowledge because you'll begin to question things you know others will question. For me to ever master a
-  concept, I have to teach it to someone else.
+>I love to teach. It's a challenging task that forces you to peel back all the knowledge you've gained so you can approach someone who lacks the same experience and terminology you have. It forces you to take amorphous concepts floating in your brain and crystalize them into solid concepts that you can describe. It forces you to acknowledge your gaps in knowledge because you'll begin to question things you know others will question. For me to ever master a concept, I have to teach it to someone else.
 
-- And hey, if you could take a second to [![star the repo](https://img.shields.io/github/stars/mohammedelzanaty/react-redux-guide-with-zanaty?style=social&label=Star&maxAge=2592000)](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty) and [![Fork It and Play](https://img.shields.io/github/forks/mohammedelzanaty/react-redux-guide-with-zanaty.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/Naereen/StrapDown.js/network/) I'd be super appreciative. It helps me reach more people.
+I need also to take the chance and as you if you could take a second to [![star the repo](https://img.shields.io/github/stars/mohammedelzanaty/react-redux-guide-with-zanaty?style=social&label=Star&maxAge=2592000)](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty) and [![Fork It and Play](https://img.shields.io/github/forks/mohammedelzanaty/react-redux-guide-with-zanaty.svg?style=social&label=Fork&maxAge=2592000)](https://GitHub.com/Naereen/StrapDown.js/network/) I'd be super appreciative. It helps me reach more people.
 
 it's been a long time that I want to take a chance to write about one of my fav things in my life which it's react, of
-course, react... so let's first start by
+course, react... so let's stop talking about me and talk about react
 
-<a name="what-react-js"/>
-
-## What's is reactjs?
+## What's is ReactJS?
 
 As described
 
@@ -114,7 +118,7 @@ As described
 
 form the above definitions we noticed that React it's javascript library and this make me ask you
 
-### What's? different between library and framework ?
+### What's the difference between Library and Framework?
 
 Both libraries and frameworks are reusable code written by someone else. Their purpose is to help you solve common problems in easier ways.
 
@@ -125,28 +129,25 @@ We can use a house as a metaphor to explain the difference between these concept
 
 ![difference between library and framework](https://miro.medium.com/max/640/1*tMJUTqe2dKlueiNU17IZug.png)
 
-#### The Technical Difference
+> The technical difference between a framework and library lies in a term called inversion of control. When you use a library, you are in charge of the application flow. You choose when and where to call the library. When you use a framework, the framework is in charge of the flow. It provides you with a few places to plug in your code, but it calls the code you plugged in as needed.
 
-The technical difference between a framework and library lies in a term called inversion of control. When you use a library, you are in charge of the application flow. You choose when and where to call the library. When you use a framework, the framework is in charge of the flow. It provides you with a few places to plug in your code, but it calls the code you plugged in as needed.
 
 ☕ ⁉️ 🙋🏻 🙋🏼 [COFFE TIME](https://ahaslides.com/ZANATYCT) ➡️ [Q1 - Q7]
 
-<a name="problems-that-react-solve"/>
 
-## What's the problems that React solve ?
+### What's the problems that React solve ?
 
-<ol>
-  <li>UI Complexity -> solved by Declarative Code</li>
-  <li>Messy Data Flow -> solved by Unidirectional Data Flow</li>
-  <li>Slow DOM Operations -> solved by virual-dom-diffing</li>
-  <li>Repetitive Code -> solved by Reusable components</li>
-</ol>
+
+- UI Complexity **``Solved by``** Declarative Code
+- Messy Data Flow **``Solved by``** Unidirectional Data Flow
+- Slow DOM Operations **``Solved by``** virtual-dom-diffing
+- Repetitive Code **``Solved by``** Reusable components
 
 so after we know simple definitions about react and know the problems let's dive into solutions
 
 ![https://xbsoftware.com/blog/why-react-awesome-app-dev/](https://xbsoftware.com/wp-content/uploads/2016/04/why-react-awesome.jpg)
 
-### Composition
+#### Composition
 
 In programming... The composition is about creating small functions and creating bigger and more complete functions with them. Think of a function as a brick, composition is how you would make those bricks work together to build a wall or a house.
 
@@ -170,7 +171,19 @@ const people = ['Mohammed', 'Yasmeen', 'Elzanaty', 'Hamza', 'Saad'];
 people.map(name => name[0]).filter(char => char === 'M'); //'M'
 ```
 
-### [Imperative Code](https://tylermcginnis.com/imperative-vs-declarative-programming/)
+#### [Declarative Code](https://stackoverflow.com/questions/33655534/difference-between-declarative-and-imperative-in-react-js)
+
+It's an easy and better approach for me, bcoz you let the computer do all that you need for you, you just want to
+express the logic of a computation without describing its control flow we don't code up all of the steps to get us to
+the end result. Instead, we declare what we want to be done, and code will take care of doing it.
+
+```jsx
+const people = ['Mohammed', 'Yasmeen', 'Elzanaty', 'Hamza', 'Saad'];
+const excitedPeople = people.map(name => name + '!');
+// ["Mohammed!", "Yasmeen!", "Elzanaty!", "Hamza!", "Saad!"]
+```
+
+[Imperative Code](https://tylermcginnis.com/imperative-vs-declarative-programming/)
 
 we tell code exactly what to do and how to do it.
 
@@ -183,23 +196,10 @@ for (let i = 0; i < people.length; i++) {
 // ["Mohammed!", "Yasmeen!", "Elzanaty!", "Hamza!", "Saad!"]
 ```
 
-### [Declarative Code](https://stackoverflow.com/questions/33655534/difference-between-declarative-and-imperative-in-react-js)
-
-It's an easy and better approach for me, bcoz you let the computer do all that you need for you, you just want to
-express the logic of a computation without describing its control flow we don't code up all of the steps to get us to
-the end result. Instead, we declare what we want to be done, and code will take care of doing it.
-
-```jsx
-const people = ['Mohammed', 'Yasmeen', 'Elzanaty', 'Hamza', 'Saad'];
-const excitedPeople = people.map(name => name + '!');
-// ["Mohammed!", "Yasmeen!", "Elzanaty!", "Hamza!", "Saad!"]
-```
-
 > **Imperative code,** instructs code for how to perform each step.
-
 > **Declarative code**, instructs code for what we want to be done, and let code take care of performing the steps.
 
-### [Unidirectional Data Flow](https://flaviocopes.com/react-unidirectional-data-flow/)
+#### [Unidirectional Data Flow](https://flaviocopes.com/react-unidirectional-data-flow/)
 
 In general, this concept means that data has one, and only one, way to be transferred to other parts of the application.
 
@@ -225,7 +225,7 @@ Changing state on a Component will never affect its parent, or its siblings, or 
 
 This is the reason that the state is often moved up in the Component tree, so that it can be shared between components that need to access it.
 
-### [Virtual DOM](https://reactjs.org/docs/optimizing-performance.html#avoid-reconciliation)
+#### [Virtual DOM](https://reactjs.org/docs/optimizing-performance.html#avoid-reconciliation)
 
 First of all — the _Virtual DOM_ was not invented by React, but React uses it and provides it for free.
 
@@ -248,14 +248,12 @@ With the help of this comparison React figures out which components in the UI ne
 
 Once React knows which components has been updated, then it replaces the original DOM nodes with the updated DOM node.
 
-![No alt text provided for this image](https://media-exp1.licdn.com/dms/image/C5612AQFbwsKzJw4v2A/article-inline_image-shrink_1000_1488/0/1565018330860?e=1622678400&v=beta&t=LrGecxs5TAlZyZnSwzPb7CZwLqzomp3-yuqGKT-o4kw)
+![React Virtual DOM Explained in Simple English - Programming with Mosh](https://i0.wp.com/programmingwithmosh.com/wp-content/uploads/2018/11/lnrn_0201.png?fit=1173%2C785&ssl=1)
 
-### [The Diffing Algorithm](https://reactjs.org/docs/reconciliation.html#the-diffing-algorithm)
+#### [The Diffing Algorithm](https://reactjs.org/docs/reconciliation.html#the-diffing-algorithm)
 
 Diffing determines how to make efficient changes to the DOM. With diffing, old DOM nodes are taken out and replaced only
 when necessary. This way, our app doesn't perform any unnecessary operations to figure out when to render content.
-
-<a name="pure-react"/>
 
 ## Pure React
 
@@ -345,7 +343,7 @@ This is about the simplest React app you can build.
   of `App` to render out. `App` is a class of components and we need to render one instance of a class. That's
   what `React.createElement` does: it makes an instance of a class.
 
-* [x] Without React Decoration
+- Without React Decoration
       Now that we've done that, let's separate this out from a script tag on the DOM to its own script file (best practice.)
   1. Make a new file in your `src` directory called `App.js` and cut and paste your code into it.
   2. Add `<script src="App.js"></script>` before end of the body at `index.html` to link js file
@@ -427,8 +425,6 @@ this Product component can represent not just Mens Cotton Jacket, but any Produc
 components. We can then use these components to build larger components, which in turn make up yet-larger components.
 This is how React apps are made!
 
-<a name="npm"/>
-
 ## NPM
 
 npm does not stand for Node Package Manager. It is, however, the package manager for Node. (They don't say what it
@@ -442,13 +438,13 @@ please go install that too. When you run `npm init` it'll ask you a bunch of que
 If you don't know the answer or don't care, just hit enter. You can always modify package.json later.
 This will allow us to get started installing and saving packages.
 
-- [x] Kick off with create-react-app
+- Kick off with create-react-app
       💡 Before Installing `create-react-app` 💡
 
 If you already have Node.js on your machine, it's a good idea to reinstall it to make sure you have the latest version.
 Keep in mind that Node.js now comes with `npm` by default.
 
-### **MacOS**
+### MacOS
 
 1. Install [Homebrew](https://brew.sh/) by
    running `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"` in the
@@ -461,14 +457,14 @@ Keep in mind that Node.js now comes with `npm` by default.
 7. Run `npm --version`.
 8. Run `yarn install && yarn --version`
 
-### **Windows**
+### Windows
 
 1. Please download the [Node.js Installer](https://nodejs.org/en/download/), go through the installation process, and
    restart your computer once you're done.
 2. Please follow the [`yarn` installation instructions](https://yarnpkg.com/lang/en/docs/install).
 3. Run `yarn --version` to make sure `yarn` has been successfully installed.
 
-### **Linux**
+### Linux
 
 1. Please follow [these instructions](https://www.ostechnix.com/install-node-js-linux) to
    install [Node.js](https://nodejs.org/en/download/).
@@ -476,12 +472,10 @@ Keep in mind that Node.js now comes with `npm` by default.
 3. Please follow the [`yarn` installation instructions](https://yarnpkg.com/lang/en/docs/install).
 4. Run `yarn --version` to make sure `yarn` has been successfully installed.
 
-<a name="create-react-app"/>
-
 ## Scaffolding Your React App
 
 JSX is awesome, but it does need to be transpiled into regular JavaScript before reaching the browser. We typically use
-a transpiler like [Babel](https://github.com/babel/babel) to accomplish this for us. We can run Babel through a build
+a transpire like [Babel](https://github.com/babel/babel) to accomplish this for us. We can run Babel through a build
 tool, like [Webpack](https://github.com/webpack/webpack) which helps bundle all of our assets (JavaScript files, CSS,
 images, etc.) for web projects.
 
@@ -563,9 +557,6 @@ export const searchProduct = async query => {
   );
 };
 ```
-
-<a name="code-quality"/>
-
 ## Code Quality
 
 It's important to keep quality high when writing code. Or at least that's how I sell ESLint and Prettier to my
@@ -629,9 +620,7 @@ here if you hold strong formatting opinions. **for example here's mine**
 }
 ```
 
-<a name="npmyarn-scripts"/>
-
-## npm/Yarn scripts
+## NPM/Yarn Scripts
 
 So it can be painful to try to remember the various CLI commands to run on your project. You can put CLI commands into
 it and then run the name of the tag and it'll run that script. Let's go see how that works. Put the following into your
@@ -650,12 +639,10 @@ First run `npm install -D prettier`. `-D` means it's for development only.
 Now you can run `yarn format` or `npm run format` and it will run that command. This means we don't have to remember
 that mess of a command and just have to remember format. Nice, right? We'll be leaning on this a lot during this course.
 
-## [](#alternatives)Alternatives
+**Alternatives**
 
 There really aren't any for Prettier. The alternative is just not to use a formatter. ESLint's `--fix` flag would be the
 closest thing.
-
-<a name="JSX"/>
 
 ## JSX
 
@@ -732,7 +719,7 @@ it will try to have `product` as a web component and not a React component.
 
 We now pass props down as we add attributes to an HTML tag. Pretty cool.
 
-<a name="component-composition"/>
+☕ ⁉️ 🙋🏻 🙋🏼 [COFFEE TIME](https://ahaslides.com/ZANATYCT) ➡️ [Q8 - 13]
 
 ## Component Composition
 
@@ -741,16 +728,13 @@ too many components, but I found at the end of the day that this lead to deeply 
 to pass props all the way down. so now react provide a solution for this
 by [Composition][https://reactjs.org/docs/composition-vs-inheritance.html] and this lead us to
 
-#### **What's Composition**
+### **What's Composition**
 
 In React, composition is a natural pattern of the component model. It's how we build components from other components,
 of varying complexity and specialization through props. Depending on how generalized these components are, they can be
 used in building many other components.
 
-**Reducing Component Nesting With Composition**
-
-for example here in our application the `Product` component. each product will have various information about the
-product including title, price, image and description etc...
+**Reducing Component Nesting With Composition** for example here in our application the `Product` component. each product will have various information about the product including title, price, image and description etc...
 
 ```jsx
 // Product Info Component
@@ -814,7 +798,7 @@ export default Product;
 
 so now before we continue I have a question
 
-#### **[What's Children](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)**
+### **[What's Props Children](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)**
 
 The React docs say that you can use `props.children` on components that represent `generic boxes`
 and that ‘don’t know their children ahead of time’. For me, that did not really clear things up. I’m sure for some, that
@@ -923,10 +907,7 @@ It's important to note that this is just a demonstration of a concept and by no 
 needs, you may compose your components differently.
 
 > I hear you enough working with static data and let's make stuff more dynamically from the backend
-
 > 📝 NOTE in the commited code you will find CSS I add to make thing looks nicer
-
-<a name="react-dev-tool"/>
 
 ## React Dev Tools
 
@@ -963,16 +944,12 @@ render(
 
 React has wonderful dev tools that the core team maintains. They're available for both Chromium-based browsers and Firefox. They let you do several things like explore your React app like a DOM tree, modify state and props on the fly to test things out, tease out performance problems, and programtically manipulate components. Definitely worth downloading now.
 
-☕ ⁉️ 🙋🏻 🙋🏼 [COFFE TIME](https://ahaslides.com/ZANATYCT) ➡️ [Q8 - 13]
-
-<a name="component-life-cycle"/>
-
 ## State and Lifecycle Methods with React
 
 Before dig deeper and dive for getting data from the api let's clear some important concepts and make sure we understand
 it well one of these important concepts is `state` so what's the state
 
-#### **State**
+### **State**
 
 As [ReactDOC](https://reactjs.org/docs/faq-state.html)
 
@@ -1447,6 +1424,7 @@ this.state.products.map(product => (
 - thunk, n. A thunk is another word for a function. But it’s not just any old function. It’s a special (and
   uncommon) name for a function that’s returned by another. Like this:
 - function that return another function
+
   ```javascript
   function definitlyNotAThunk() {
     // this one is a "thunk" because it defers work for later:
@@ -1456,6 +1434,7 @@ this.state.products.map(product => (
     };
   }
   ```
+
 - You already know this pattern. You just don’t call it “thunk.” If you want to execute the “do stuff now” part, you
   have to call it like wrapper_function()() – calling it twice, basically.
 - The Major idea behind a thunk is that it's code to be executed later
