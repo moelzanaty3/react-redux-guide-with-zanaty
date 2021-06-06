@@ -20,7 +20,6 @@ ___Table of Contents___
   - [Windows](#windows)
   - [Linux](#linux)
 - [Scaffolding Your React App](#scaffolding-your-react-app)
-  - [**Set up the API file we will use to make more focus on react**](#set-up-the-api-file-we-will-use-to-make-more-focus-on-react)
 - [Code Quality](#code-quality)
 - [NPM/Yarn Scripts](#npmyarn-scripts)
 - [JSX](#jsx)
@@ -32,8 +31,17 @@ ___Table of Contents___
   - [Strict Mode](#strict-mode)
   - [Dev Tools](#dev-tools)
 - [State and Lifecycle Methods with React](#state-and-lifecycle-methods-with-react)
-  - [**State**](#state)
+  - [State](#state)
   - [The Component Lifecycle](#the-component-lifecycle)
+- [Handling User Input](#handling-user-input)
+- [Props Types](#props-types)
+- [Presentational and Container Component](#presentational-and-container-component)
+- [React Router [🤌🏻 ✍ 👷🏻‍♂️]](#react-router---️)
+- [Error Boundaries [🤌🏻 ✍ 👷🏻‍♂️]](#error-boundaries---️)
+- [Context [🤌🏻 ✍ 👷🏻‍♂️]](#context---️)
+- [Portals and Refs [🤌🏻 ✍ 👷🏻‍♂️]](#portals-and-refs---️)
+- [Deploy your Code [🤌🏻 ✍ 👷🏻‍♂️]](#deploy-your-code---️)
+- [[Bonus] TailwindCSS [🤌🏻 ✍ 👷🏻‍♂️]](#bonus-tailwindcss---️)
 - [Why Redux?](#why-redux)
 - [What is Redux?](#what-is-redux)
 - [Pros and Cons of Redux](#pros-and-cons-of-redux)
@@ -65,11 +73,9 @@ due to the ease and power they offer you.
 ## Instructions
 
 - Throughout the course you'll see something like this
-  > 💎 `<link to the current state of the code>`
+  > 💎 `<link to the current state of the code>`.
 
-- This is a point where I have stopped and committed this to a repo. If you fall behind, get stuck, or just want to skip
-  ahead, just use git and check out that commit!
-- You can also go explore the those commits on GitHub too to see what they look like from [here](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty/commits/main).
+  This is a point where I have stopped and committed this to a repo. If you fall behind, get stuck, or just want to skip ahead, just use git and check out that commit! You can also go explore the those commits on GitHub too to see what they look like from [here](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty/commits/main).
 
 - if you have no idea about how to use git so well, let me recommend to you resources to learn it.
   - **Git** is definitely a tool worth investing time into; while it may seem boring and take a lot of time and energy
@@ -131,12 +137,9 @@ We can use a house as a metaphor to explain the difference between these concept
 
 > The technical difference between a framework and library lies in a term called inversion of control. When you use a library, you are in charge of the application flow. You choose when and where to call the library. When you use a framework, the framework is in charge of the flow. It provides you with a few places to plug in your code, but it calls the code you plugged in as needed.
 
-
 ☕ ⁉️ 🙋🏻 🙋🏼 [COFFE TIME](https://ahaslides.com/ZANATYCT) ➡️ [Q1 - Q7]
 
-
 ### What's the problems that React solve ?
-
 
 - UI Complexity **``Solved by``** Declarative Code
 - Messy Data Flow **``Solved by``** Unidirectional Data Flow
@@ -310,7 +313,7 @@ saying "not rendered".
 - The last script tag is where we're going to put our code. You don't typically do this but I wanted to start as simple
   as possible. This script tag must come _after_ the other two.
 
-> Let's add some style! [Click here](https://raw.githubusercontent.com/btholt/citr-v6-project/master/01-no-frills-react/src/style.css) to get the stylesheet for this course. If you follow along with the course and use the same class names, the styles will be applied for you automatically. This isn't a course on CSS so I make no assertion it's any good!
+> Let's add some style! [Click here](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty/blob/main/mz-shop/src/assets/styles/App.css) to get the stylesheet for this course. If you follow along with the course and use the same class names, the styles will be applied for you automatically. This isn't a course on CSS so I make no assertion it's any good!
 
 **In the last script tag, put the following.**
 
@@ -491,9 +494,7 @@ out [this article](https://docs.npmjs.com/getting-started/fixing-npm-permissions
 find out where global packages are installed, you can run `npm list -g` in your console (more
 information [here](https://stackoverflow.com/questions/5926672/where-does-npm-install-packages)).
 
-### **Set up the API file we will use to make more focus on react**
-
-I will use a fake api that return products to give us the ability to play with it. you can [take a look](https://fakestoreapi.com/docs) at it for more information
+**Let's also Set up the API file we will use in the project we will build to make more focus on react** I will use a fake api that return products to give us the ability to play with it. you can [take a look](https://fakestoreapi.com/docs) at it for more information
 so now we need 4 important function to use
 
 1. Get Products
@@ -557,6 +558,7 @@ export const searchProduct = async query => {
   );
 };
 ```
+
 ## Code Quality
 
 It's important to keep quality high when writing code. Or at least that's how I sell ESLint and Prettier to my
@@ -721,12 +723,14 @@ We now pass props down as we add attributes to an HTML tag. Pretty cool.
 
 ☕ ⁉️ 🙋🏻 🙋🏼 [COFFEE TIME](https://ahaslides.com/ZANATYCT) ➡️ [Q8 - 13]
 
+💎 [3a5a7260aebd28234cac5f63fa27ab3ef5a9f3ca](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty/tree/3a5a7260aebd28234cac5f63fa27ab3ef5a9f3ca).
+
 ## Component Composition
 
 I remember the first project I made in react and the way of thinking through building the component, just need to create
 too many components, but I found at the end of the day that this lead to deeply nested structures which made it a pain
 to pass props all the way down. so now react provide a solution for this
-by [Composition][https://reactjs.org/docs/composition-vs-inheritance.html] and this lead us to
+by [Composition](https://reactjs.org/docs/composition-vs-inheritance.html) and this lead us to
 
 ### **What's Composition**
 
@@ -741,10 +745,7 @@ used in building many other components.
 const ProductInfo = ({ id, title, description, price, category }) => {
   return (
     <div className='product-details'>
-      <Link to={`product/${id}`}>
         <h3 className='product-title'>{title}</h3>
-      </Link>
-
       <ProductPriceCategory price={price} category={category} />
       <p className='product-description'>{description}</p>
     </div>
@@ -909,6 +910,8 @@ needs, you may compose your components differently.
 > I hear you enough working with static data and let's make stuff more dynamically from the backend
 > 📝 NOTE in the commited code you will find CSS I add to make thing looks nicer
 
+💎 [6e1a7c36dec7eb028b8c46efe790c93f6f7ae9d9](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty/tree/6e1a7c36dec7eb028b8c46efe790c93f6f7ae9d9).
+
 ## React Dev Tools
 
 React has some really great tools to enhance your developer experience. We'll go over a few of them here.
@@ -949,16 +952,17 @@ React has wonderful dev tools that the core team maintains. They're available fo
 Before dig deeper and dive for getting data from the api let's clear some important concepts and make sure we understand
 it well one of these important concepts is `state` so what's the state
 
-### **State**
+### State
 
-As [ReactDOC](https://reactjs.org/docs/faq-state.html)
+As [ReactDoc](https://reactjs.org/docs/faq-state.html)
 
 - plain JavaScript object
 - managed within the component (similar to variables declared within a function).
 - can only be used in Class Components
-- can be updated only by a `setState` function
+- can be updated only by a `setState` function which schedules an update to a component’s state object. When state changes, the component responds by re-rendering.
 
-the code for it will be like
+so it define the state in the class component it defined as property of the
+component class for example:-
 
 ```jsx
 class App extends Component {
@@ -968,7 +972,9 @@ class App extends Component {
 }
 ```
 
-updated with
+and can be updated with `setState` by passing an object or a function in setState?
+
+Passing an update function allows you to access the current state value inside the updater. Since setState calls are batched, this lets you chain updates and ensure they build on top of each other instead of conflicting:
 
 ```jsx
 // this give you access to the previous state
@@ -978,6 +984,15 @@ this.setState({ ... })
 ```
 
 > 📝 props get passed to the component (similar to function parameters) and it's immutable i.e. once set the props cannot be changed,
+
+**Should this Component have state?**
+
+state is `optional`. Since state `increases complexity and reduces predictability`, a Component without state is preferable. Even though you clearly can't do without state in an interactive app, you should avoid having too many Stateful Components.
+
+[x] [Component types](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md#component-types)
+
+1. **Stateless Component** — Only props, no state. There's not much going on besides the render() function and all their logic revolves around the props they receive. This makes them very easy to follow (and test for that matter). We sometimes call these dumb-as-f*ck Components (which turns out to be the only way to misuse the F-word in the English language).
+2. **Stateful Component** — Both props and state. We also call these state managers. They are in charge of client-server communication (XHR, web sockets, etc.), processing data and responding to user events. These sort of logistics should be encapsulated in a moderate number of Stateful Components, while all visualization and formatting logic should move downstream into as many Stateless Components as possible.
 
 so for now we need to statue our products in the app and initialize it with empty array for now
 
@@ -997,16 +1012,25 @@ the next step will be get the data from the `API` and this will lead us to other
 
 ### The Component Lifecycle
 
-As [ReactDOC](https://reactjs.org/docs/react-component.html)
-Each component has several “lifecycle methods” that you can override to run code at particular times in the process. You
-can use [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet. In
-the list below, commonly used lifecycle methods are marked as bold. The rest of them exist for relatively rare use
-cases.
+As [ReactDoc](https://reactjs.org/docs/react-component.html)
 
-so there're three phases `Mounting`, `Updating`, and `Unmounting` that every component goes through
+- Each component has several “lifecycle methods” that you can override to run code at particular times in the process.
+- You can use [this lifecycle diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet. In
+the list below, commonly used lifecycle methods are marked as bold. The rest of them exist for relatively rare use cases.
+
+![Component Life Cycles](./images/reactjs-component-life-cycle.png)
+
+so there're three phases:
+
+1. `Mounting`: **Adding** nodes to the DOM
+2. `Updating`: **Altering** existing nodes in the DOM
+3. `Un Mounting`: **Removing** nodes from the DOM
+
+every component goes through and to put it in simple terms, you can think of the React component lifecycle as the “lifetime” of a component. **Lifecycle methods are series of events that happen throughout the birth, growth, and death of a React component.**
+
 
 let's think a little here what we need to achieve in simple words `get products and parse it to the DOM` so logically we
-are in the mounting phase there's a lot of stuff happen here but for now let foucs on `componentDidMount` which invoked
+are in the mounting phase there's a lot of stuff happen here but for now let focus on `componentDidMount` which invoked
 immediately after a component is mounted (inserted into the tree). Initialization that requires DOM nodes should go
 here. [see more](https://reactjs.org/docs/react-component.html#componentdidmount)
 
@@ -1048,16 +1072,14 @@ class App extends Component {
 export default App;
 ```
 
-- Whenever a class gets created (React or not), the constructor gets called. If you don't create a constructor, there's
-  a default one that silently gets run in the background. Inside we accept the props from whatever parent created it and
-  then call `super(props)` since we need to take those props and hand them to React.
+- Whenever a class gets created (React or not), the constructor gets called. If you don't create a constructor, there's a default one that silently gets run in the background. Inside we accept the props from whatever parent created it and then call `super(props)` since we need to take those props and hand them to React.
 
 - We initiate state here. We are going to be keeping an array of products data that we load from the API. We'll
   initialize that as an empty array so we never have to check if that array exists or not.
 
-- We're calling getAllProduct method. This lets us get all available products.
+- We're calling `getAllProduct` method. This lets us get all available products.
 
-- Now, after the response comes back from the API, we call a method called setState. setStates takes in an object and
+- Now, after the response comes back from the API, we call a method called `setState`. `setState` takes in an object and
   does a shallow merge with your current state.
 
 - Now we take that API data and output that to the DOM. Notice React is smart enough to re-render itself after a
@@ -1107,18 +1129,19 @@ class App extends Component {
 export default App;
 ```
 
-- We use map which takes a JavaScript array, takes a function, applies that function to each array item (i.e. if you
-  have an array of length 15, that function gets called 15 times,) and returns a new array containing the results of
-  each of those function called. In const x = [1,2,3].map(num => { return num \* 2});, x is [2,4,6]. In this case, we
-  have an array of Pet data objects, and we transform those into Pet components.
+📝 We use `map` which takes a JavaScript array, takes a function, applies that function to each array item (i.e. if you have an array of length 15, that function gets called 15 times,) and returns a new array containing the results of each of those function called. In
 
-if you open your console now you will find `Warning: Each child in a list should have a unique "key" prop.` bcoz Key is
-a unique identifier that we give React, so it can do quick comparisons on objects. If we decide to change how we sort
-the list of products, e.g. we sort by title instead of price, we'd re-arrange all the object but they'd be the same
-object. All React knows is it got a new list. Without any further hinting, React would just destroy all the DOM objects
-and start over. If we give it a unique key for each object, it can track that an object just moved positions and didn't
-actually get destroyed and just move the DOM object instead of re-rendering. Big performance win.
+```javascript
 
+const x = [1,2,3].map(num => num * 2); // [2,4,6]
+
+```
+
+In this case, we have an array of numbers, and we transform those into other thing.
+
+if you open your console now you will find **`Warning: Each child in a list should have a unique "key" prop.`** because Key is a unique identifier that we give React, so it can do quick comparisons on objects. If we decide to change how we sort the list of products.
+
+**Ex.** we sort by title instead of price, we'd re-arrange all the object but they'd be the same object. All React knows is it got a new list. Without any further hinting, React would just destroy all the DOM objects and start over. If we give it a unique key for each object, it can track that an object just moved positions and didn't actually get destroyed and just move the DOM object instead of re-rendering. Big performance win.
 so to achieve this and remove warning so the map will
 
 ```jsx
@@ -1134,7 +1157,36 @@ this.state.products.map(product => (
 ));
 ```
 
-<a name="why-redux"/>
+💎 [39c564868e4c0e2fc1dc5c609b7481e94c72a9ea](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty/commit/39c564868e4c0e2fc1dc5c609b7481e94c72a9ea).
+
+## Handling User Input
+
+💎 [02045ab8b4c6fa78f3dd105a375b5f4934bde8c8](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty/commit/02045ab8b4c6fa78f3dd105a375b5f4934bde8c8).
+
+## Props Types
+
+💎 [ea00c52a8ddd3440c75581d34637da3d5e051879](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty/commit/ea00c52a8ddd3440c75581d34637da3d5e051879).
+
+## Presentational and Container Component
+
+- Resources to learn:
+  - [Presentational and Container Component Pattern](https://scotch.io/courses/5-essential-react-concepts-to-know-before-learning-redux/presentational-and-container-component-pattern-in-react)
+  - [The difference between Presentational and Container Components](https://flaviocopes.com/react-presentational-vs-container-components/)
+  - [Presentational and Container Components By **Dan Abramov**](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
+
+💎 [b678eae9198cddb3a7b7119265bf02e57e496962](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty/commit/b678eae9198cddb3a7b7119265bf02e57e496962).
+
+## React Router [🤌🏻 ✍ 👷🏻‍♂️]
+
+## Error Boundaries [🤌🏻 ✍ 👷🏻‍♂️]
+
+## Context [🤌🏻 ✍ 👷🏻‍♂️]
+
+## Portals and Refs [🤌🏻 ✍ 👷🏻‍♂️]
+
+## Deploy your Code [🤌🏻 ✍ 👷🏻‍♂️]
+
+## [Bonus] TailwindCSS [🤌🏻 ✍ 👷🏻‍♂️]
 
 ## Why Redux?
 
@@ -1161,8 +1213,6 @@ this.state.products.map(product => (
   that give you insights into your application’s current state to simplify debugging or testing your application.
   It’s a great incentive to get started with Redux.
 
-<a name="what-is-redux"/>
-
 ## What is Redux?
 
 - state management lib for javascript applications
@@ -1181,7 +1231,6 @@ this.state.products.map(product => (
     - State changes are notified via subscription methods
     - UI renders again based on state changes received via the subscription method
 
-<a name="pros-cons-of-redux"/>
 
 ## Pros and Cons of Redux
 
@@ -1196,7 +1245,6 @@ this.state.products.map(product => (
   - Complexity
   - Verbosity:- you have to write boiler-plate code to get things done
 
-<a name="function-programming"/>
 
 ## Function Programming
 
@@ -1235,7 +1283,6 @@ this.state.products.map(product => (
         ````
     `````
 
-<a name="function-first-class"/>
 
 ## Functions as First-Class Citizens
 
@@ -1246,19 +1293,15 @@ this.state.products.map(product => (
     - doSomething is a callback -> is a function passed as an argument to another function.
   - return from other function
 
-<a name="higher-order-functions"/>
 
 ## Higher-order Functions
 
 - A function that accepts and/or returns another function
 
-<a name="functional-composition"/>
-
 ## Functional Composition
 
 - is the process of combining two or more functions to produce a new function.
 
-<a name="curring"/>
 
 ## Currying
 
@@ -1272,7 +1315,6 @@ this.state.products.map(product => (
   - Currying helps we avoid passing the same variable again and again.
   - It helps to create a higher order function
 
-<a name="pure-functions"/>
 
 ## Pure Functions
 
@@ -1289,7 +1331,6 @@ this.state.products.map(product => (
   - random values
   - current data/time
 
-<a name="immutability"/>
 
 ## Immutability
 
@@ -1306,7 +1347,6 @@ this.state.products.map(product => (
     if you building application with redux you should not mutate data because that's a fundamental principle in
     redux
 
-<a name="updating-objects"/>
 
 ## Updating Objects
 
@@ -1319,17 +1359,14 @@ this.state.products.map(product => (
   - Reflect changes made to the new/copied object in the original object
   - Stores the copy of the original object and points the references to the objects.
 
-<a name="updating-arrays"/>
 
 ## Updating Arrays
 
-<a name="redux-flow"/>
 
 ## Redux Data Flow Concepts
 
 [Redux Data Flow Concepts](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow)
 
-<a name="redux-functions"/>
 
 ## Redux Functions
 
@@ -1340,7 +1377,6 @@ this.state.products.map(product => (
 - [x] bindActionCreators
 - [x] Middleware in Redux
 
-<a name="redux-react"/>
 
 ## Redux React
 
@@ -1401,7 +1437,6 @@ this.state.products.map(product => (
     - Function form: Allows more customization
     - Object shorthand form: More declarative and easier to use
 
-<a name="middle-ware-redux"/>
 
 ## Middle Ware Redux
 
@@ -1416,7 +1451,6 @@ this.state.products.map(product => (
 - implement logger
 - What if we wrote a middleware that let us pass a function to dispatch, instead of an action object? We could have our middleware check to see if the "action" is actually a function instead, and if it's a function, call the function right away. That would let us write async logic in separate functions, outside of the middleware definition.
 
-<a name="thunk"/>
 
 ## Thunk
 
