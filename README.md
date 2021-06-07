@@ -1,4 +1,4 @@
-> This notes I suppose it's unique to other react introductions as I will teach you not only React, but the ecosystem around React. When I was learning to React myself, I found myself frustrated that it seemed like every tutorial started on step 14 and left out steps 1-13 of how to set up a React project. with some of my thoughts and other good articles mentioned
+These notes I suppose it's unique to other react introductions as I will teach you not only React, but the ecosystem around React. When I was learning to React myself, I found myself frustrated that it seemed like every tutorial started on step 14 and left out steps 1-13 of how to set up a React project. with some of my thoughts and other good articles mentioned
 
 ___Table of Contents___
 
@@ -142,7 +142,7 @@ We can use a house as a metaphor to explain the difference between these concept
 
 > The technical difference between a framework and library lies in a term called inversion of control. When you use a library, you are in charge of the application flow. You choose when and where to call the library. When you use a framework, the framework is in charge of the flow. It provides you with a few places to plug in your code, but it calls the code you plugged in as needed.
 
-☕ ⁉️ 🙋🏻 🙋🏼 [COFFE TIME](https://ahaslides.com/ZANATYCT) ➡️ [Q1 - Q7]
+☕ ⁉️ 🙋🏻 🙋🏼 [COFFE TIME](https://ahaslides.com/ZANATYCT)
 
 ### What's the problems that React solve ?
 
@@ -726,7 +726,7 @@ it will try to have `product` as a web component and not a React component.
 
 We now pass props down as we add attributes to an HTML tag. Pretty cool.
 
-☕ ⁉️ 🙋🏻 🙋🏼 [COFFEE TIME](https://ahaslides.com/ZANATYCT) ➡️ [Q8 - 13]
+☕ ⁉️ 🙋🏻 🙋🏼 [COFFEE TIME](https://ahaslides.com/ZANATYCT)
 
 💎 [3a5a7260aebd28234cac5f63fa27ab3ef5a9f3ca](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty/tree/3a5a7260aebd28234cac5f63fa27ab3ef5a9f3ca).
 
@@ -994,7 +994,7 @@ this.setState({ ... })
 
 state is `optional`. Since state `increases complexity and reduces predictability`, a Component without state is preferable. Even though you clearly can't do without state in an interactive app, you should avoid having too many Stateful Components.
 
-[x] [Component types](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md#component-types)
+[Component types](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md#component-types)
 
 1. **Stateless Component** — Only props, no state. There's not much going on besides the render() function and all their logic revolves around the props they receive. This makes them very easy to follow (and test for that matter). We sometimes call these dumb-as-f*ck Components (which turns out to be the only way to misuse the F-word in the English language).
 2. **Stateful Component** — Both props and state. We also call these state managers. They are in charge of client-server communication (XHR, web sockets, etc.), processing data and responding to user events. These sort of logistics should be encapsulated in a moderate number of Stateful Components, while all visualization and formatting logic should move downstream into as many Stateless Components as possible.
@@ -1014,6 +1014,8 @@ class App extends Component {
 ```
 
 the next step will be get the data from the `API` and this will lead us to other important concept
+
+☕ ⁉️ 🙋🏻 🙋🏼 [COFFEE TIME](https://ahaslides.com/ZANATYCT)
 
 ### The Component Lifecycle
 
@@ -1342,6 +1344,8 @@ then you will be able to use by different [validators provided](https://www.npmj
 - [Presentational and Container Components By **Dan Abramov**](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
 
 💎 [b678eae9198cddb3a7b7119265bf02e57e496962](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty/commit/b678eae9198cddb3a7b7119265bf02e57e496962).
+
+☕ ⁉️ 🙋🏻 🙋🏼 [COFFEE TIME](https://ahaslides.com/ZANATYCT)
 
 ## React Router
 
