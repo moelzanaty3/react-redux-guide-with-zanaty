@@ -34,14 +34,19 @@ ___Table of Contents___
   - [State](#state)
   - [The Component Lifecycle](#the-component-lifecycle)
 - [Handling User Input](#handling-user-input)
+  - [Controlled Components](#controlled-components)
+  - [Uncontrolled Component](#uncontrolled-component)
 - [Props Types](#props-types)
+  - [How React props work](#how-react-props-work)
+  - [Why validate props in React?](#why-validate-props-in-react)
+  - [Using the `prop-types` library in React](#using-the-prop-types-library-in-react)
 - [Presentational and Container Component](#presentational-and-container-component)
-- [React Router [🤌🏻 ✍ 👷🏻‍♂️]](#react-router---️)
-- [Error Boundaries [🤌🏻 ✍ 👷🏻‍♂️]](#error-boundaries---️)
-- [Context [🤌🏻 ✍ 👷🏻‍♂️]](#context---️)
-- [Portals and Refs [🤌🏻 ✍ 👷🏻‍♂️]](#portals-and-refs---️)
-- [Deploy your Code [🤌🏻 ✍ 👷🏻‍♂️]](#deploy-your-code---️)
-- [[Bonus] TailwindCSS [🤌🏻 ✍ 👷🏻‍♂️]](#bonus-tailwindcss---️)
+- [React Router](#react-router)
+- [Error Boundaries](#error-boundaries)
+- [Context](#context)
+- [Portals and Refs](#portals-and-refs)
+- [Deploy your Code](#deploy-your-code)
+- [[Bonus] TailwindCSS](#bonus-tailwindcss)
 - [Why Redux?](#why-redux)
 - [What is Redux?](#what-is-redux)
 - [Pros and Cons of Redux](#pros-and-cons-of-redux)
@@ -1028,7 +1033,6 @@ so there're three phases:
 
 every component goes through and to put it in simple terms, you can think of the React component lifecycle as the “lifetime” of a component. **Lifecycle methods are series of events that happen throughout the birth, growth, and death of a React component.**
 
-
 let's think a little here what we need to achieve in simple words `get products and parse it to the DOM` so logically we
 are in the mounting phase there's a lot of stuff happen here but for now let focus on `componentDidMount` which invoked
 immediately after a component is mounted (inserted into the tree). Initialization that requires DOM nodes should go
@@ -1161,32 +1165,207 @@ this.state.products.map(product => (
 
 ## Handling User Input
 
+HTML form elements work a little bit differently from other DOM elements in React, because form elements naturally keep some internal state. For example, this form in plain HTML accepts a single name:
+
+```html
+<form>
+  <label>
+    Name:
+    <input type="text" name="name" />
+  </label>
+  <input type="submit" value="Submit" />
+</form>
+```
+
+This form has the default HTML form behavior of browsing to a new page when the user submits the form. If you want this behavior in React, it just works. But in most cases, it’s convenient to have a JavaScript function that handles the submission of the form and has access to the data that the user entered into the form. The standard way to achieve this is with a technique called “controlled components”. ➡ Read More @ [ReactDoc](https://reactjs.org/docs/forms.html)
+
+### Controlled Components
+
+A [**Controlled Component**](https://reactjs.org/docs/forms.html#controlled-components) is one that takes its current value through props and notifies changes through callbacks like onChange. A parent component "controls" it by handling the callback and managing its own state and passing the new values as props to the controlled component. You could also call this a "dumb component".
+
+**For example,** , we can write the form that give user ability to search in the products as a controlled component:
+
+```jsx
+import React, { Component } from 'react'
+
+class App extends Component {
+  // 1 -> declare the state 
+  // With a controlled component, the input’s value is always driven by the React state. 
+  // While this means you have to type a bit more code, 
+  // you can now pass the value to other UI elements too, or reset it from other event handlers.
+  state = {
+    query: ''
+  }
+
+  handleSearchProduct = query => {
+    this.setState(() => ({
+      query: query.trim()
+    }))
+  }
+
+  render() {
+    const { query } = this.state
+    return (
+      <div className="list-products">
+        <div className="list-products-top">
+          <input
+            className="search-products"
+            type="text"
+            placeholder="Search Products"
+            // Since the value attribute is set on our form element, the displayed value will always be this.state.query,
+            value={query}
+            // on change event that take care of any changes happen in the input
+            // making the React state the source of truth. 
+            // Since handleChange runs on every keystroke to update the React state, 
+            // the displayed value will update as the user types.
+            onChange={event => {
+              this.handleSearchProduct(event.target.value)
+            }}
+          />
+        </div>
+
+        // ...
+      </div>
+    )
+  }
+}
+
+export default App
+```
+
+### Uncontrolled Component
+
+A [**Uncontrolled Component**](https://reactjs.org/docs/uncontrolled-components.html) is one that stores its own state internally, and you query the DOM using a ref to find its current value when you need it. This is a bit more like traditional HTML.
+
+> To write an uncontrolled component, instead of writing an event handler for every state update, you can use a ref to get form values from the DOM.
+
+**For example,** this code accepts a single name in an uncontrolled component:
+
+```jsx
+import React, { Component, createRef } from 'react'
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.input = createRef();
+  }
+
+  handleSearchProduct = event => {
+    alert('A name was submitted: ' + this.input.current.value);
+    event.preventDefault();
+  }
+
+  render() {
+    const { query } = this.state
+    return (
+      <div className="list-products">
+        <div className="list-products-top">
+          <input
+            className="search-products"
+            type="text"
+            placeholder="Search Products"
+            ref={this.input}
+          />
+        </div>
+
+        // ...
+      </div>
+    )
+  }
+}
+
+export default App
+```
+
+[Conclusion](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/#conclusion) 
+
+Both the controlled and uncontrolled form fields have their merit. **Evaluate your specific situation and pick the approach** — what works for you is good enough.
+
+| Feature                                   | uncontrolled | controlled |
+| :---------------------------------------- | :----------: | :--------: |
+| one-time value retrieval (e.g. on submit) |      ✅       |     ✅      |
+| validating on submit                      |      ✅       |     ✅      |
+| instant field validation                  |      ❌       |     ✅      |
+| conditionally disabling submit button     |      ❌       |     ✅      |
+| enforcing input format                    |      ❌       |     ✅      |
+| several inputs for one piece of data      |      ❌       |     ✅      |
+| dynamic inputs                            |      ❌       |     ✅      |
+
+If your form is incredibly simple in terms of UI feedback, uncontrolled with refs is entirely fine. You don’t have to listen to what the various articles are saying is “bad.”
+
+> Also, this is not an once-and-for-all decision: you can always migrate to controlled inputs. [Going from uncontrolled to controlled inputs is not hard.](https://goshakkk.name/turn-uncontrolled-into-controlled/)
+
+> I am not going into all the ways of handling user interactions in JavaScript. You can register handlers for things mouse leave, mouse enter, key up, key down, and can even handle stuff like copy and paste events, focus, blur, etc. [Here's a list of them from the React docs](https://reactjs.org/docs/events.html#supported-events).
+
 💎 [02045ab8b4c6fa78f3dd105a375b5f4934bde8c8](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty/commit/02045ab8b4c6fa78f3dd105a375b5f4934bde8c8).
 
 ## Props Types
+
+I spent a lot of time to ask myself why I use this? and to not hide a secret from you, it was a heavy burden on my shoulders but in simple words this little package will save you from a lot shitty stuff with just multiple lines of code and the most important thing is that **it will save you from yourself**
+
+**prop-types** is a runtime checking for react props and similar objects.
+
+### How React props work
+
+React props allow you to send data — including numbers, strings, functions, objects, arrays, etc. — to a component when you call on that component. If you have multiple components, you can pass data from one component to another.
+
+To pass props between components, you would add them when the component is called, just as you would pass arguments when calling on a regular JavaScript function. for more information, check out [react props docs](https://reactjs.org/docs/components-and-props.html)
+
+### Why validate props in React?
+
+When developing a React application, you might encounter the need for a prop to be structured and defined to avoid bugs and errors. Just like a function might have mandatory arguments, a React component might require a prop to be defined, otherwise, it will not render properly. If you forget to pass a required prop into a component that needs it, it could cause your app to behave unexpectedly.
+
+### Using the `prop-types` library in React
+
+Prior to `React 15.5.0`, a utility named `PropTypes` was available as part of the React package, which provided a lot of validators for configuring type definitions for component props. It could be accessed with `React.PropTypes`.
+
+However, in later versions of React, this utility has been moved to a separate package named `prop-types`, so you need to add it as a dependency for your project in order to get access to the `PropTypes` utility.
+
+```shell
+npm install prop-types --save
+```
+
+It can be imported into your project files as follows:
+
+```shell
+import PropTypes from 'prop-types';
+```
+
+then you will be able to use by different [validators provided](https://www.npmjs.com/package/prop-types#usage) and now I think it's an appropriate time to check how we can add prop-types to the `Product.js` component
 
 💎 [ea00c52a8ddd3440c75581d34637da3d5e051879](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty/commit/ea00c52a8ddd3440c75581d34637da3d5e051879).
 
 ## Presentational and Container Component
 
-- Resources to learn:
-  - [Presentational and Container Component Pattern](https://scotch.io/courses/5-essential-react-concepts-to-know-before-learning-redux/presentational-and-container-component-pattern-in-react)
-  - [The difference between Presentational and Container Components](https://flaviocopes.com/react-presentational-vs-container-components/)
-  - [Presentational and Container Components By **Dan Abramov**](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
+- [Presentational and Container Component Pattern](https://scotch.io/courses/5-essential-react-concepts-to-know-before-learning-redux/presentational-and-container-component-pattern-in-react)
+- [The difference between Presentational and Container Components](https://flaviocopes.com/react-presentational-vs-container-components/)
+- [Presentational and Container Components By **Dan Abramov**](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
 
 💎 [b678eae9198cddb3a7b7119265bf02e57e496962](https://github.com/mohammedelzanaty/react-redux-guide-with-zanaty/commit/b678eae9198cddb3a7b7119265bf02e57e496962).
 
-## React Router [🤌🏻 ✍ 👷🏻‍♂️]
+## React Router
 
-## Error Boundaries [🤌🏻 ✍ 👷🏻‍♂️]
+`<!-- coming soon  🤌🏻 -->`
 
-## Context [🤌🏻 ✍ 👷🏻‍♂️]
+## Error Boundaries
 
-## Portals and Refs [🤌🏻 ✍ 👷🏻‍♂️]
+`<!-- coming soon  🤌🏻 -->`
 
-## Deploy your Code [🤌🏻 ✍ 👷🏻‍♂️]
+## Context
 
-## [Bonus] TailwindCSS [🤌🏻 ✍ 👷🏻‍♂️]
+`<!-- coming soon  🤌🏻 -->`
+
+## Portals and Refs
+
+`<!-- coming soon  🤌🏻 -->`
+
+## Deploy your Code
+
+`<!-- coming soon  🤌🏻 -->`
+
+## [Bonus] TailwindCSS
+
+`<!-- coming soon  🤌🏻 -->`
 
 ## Why Redux?
 
@@ -1231,7 +1410,6 @@ this.state.products.map(product => (
     - State changes are notified via subscription methods
     - UI renders again based on state changes received via the subscription method
 
-
 ## Pros and Cons of Redux
 
 - Pros
@@ -1244,7 +1422,6 @@ this.state.products.map(product => (
 - Cons
   - Complexity
   - Verbosity:- you have to write boiler-plate code to get things done
-
 
 ## Function Programming
 
@@ -1265,7 +1442,7 @@ this.state.products.map(product => (
   - It returns the same result if given the same arguments
   - It does not cause any observable side effects example
 
-    `````// impure function
+    ```// impure function
     var tip = 0;
      function calculateTip( mealTotal ) {
         tip = 0.15 * mealTotal;
@@ -1283,7 +1460,6 @@ this.state.products.map(product => (
         ````
     `````
 
-
 ## Functions as First-Class Citizens
 
 - In JavaScript, functions are first-class objects, which means they can be:
@@ -1293,7 +1469,6 @@ this.state.products.map(product => (
     - doSomething is a callback -> is a function passed as an argument to another function.
   - return from other function
 
-
 ## Higher-order Functions
 
 - A function that accepts and/or returns another function
@@ -1301,7 +1476,6 @@ this.state.products.map(product => (
 ## Functional Composition
 
 - is the process of combining two or more functions to produce a new function.
-
 
 ## Currying
 
@@ -1314,7 +1488,6 @@ this.state.products.map(product => (
 - **Why it’s useful ?**
   - Currying helps we avoid passing the same variable again and again.
   - It helps to create a higher order function
-
 
 ## Pure Functions
 
@@ -1331,7 +1504,6 @@ this.state.products.map(product => (
   - random values
   - current data/time
 
-
 ## Immutability
 
 - once object created, can not be changed if you need to change the object you need to take a copy first then change
@@ -1347,7 +1519,6 @@ this.state.products.map(product => (
     if you building application with redux you should not mutate data because that's a fundamental principle in
     redux
 
-
 ## Updating Objects
 
 ![shallow, deep copy](https://i.stack.imgur.com/AWKJa.jpg)
@@ -1359,14 +1530,11 @@ this.state.products.map(product => (
   - Reflect changes made to the new/copied object in the original object
   - Stores the copy of the original object and points the references to the objects.
 
-
 ## Updating Arrays
-
 
 ## Redux Data Flow Concepts
 
 [Redux Data Flow Concepts](https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow)
-
 
 ## Redux Functions
 
@@ -1376,7 +1544,6 @@ this.state.products.map(product => (
 - [x] combineReducers
 - [x] bindActionCreators
 - [x] Middleware in Redux
-
 
 ## Redux React
 
@@ -1437,7 +1604,6 @@ this.state.products.map(product => (
     - Function form: Allows more customization
     - Object shorthand form: More declarative and easier to use
 
-
 ## Middle Ware Redux
 
 - [Middle Ware Redux](https://redux.js.org/tutorials/fundamentals/part-6-async-logic#using-the-redux-thunk-middleware)
@@ -1450,7 +1616,6 @@ this.state.products.map(product => (
 - a Redux middleware can do anything when it sees a dispatched action: log something, modify the action, delay the action, make an async call, and more.
 - implement logger
 - What if we wrote a middleware that let us pass a function to dispatch, instead of an action object? We could have our middleware check to see if the "action" is actually a function instead, and if it's a function, call the function right away. That would let us write async logic in separate functions, outside of the middleware definition.
-
 
 ## Thunk
 
