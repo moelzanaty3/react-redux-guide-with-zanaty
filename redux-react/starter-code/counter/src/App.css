@@ -1,0 +1,33 @@
+html, body, * {
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+}
+button {
+  background-color: magenta;
+  border: 5px solid #f9f;
+  color: white;
+  margin: 0 0.5em;
+  padding: 1em;
+  outline: none;
+}
+button:hover {
+  background-color: #e600e6;
+}
+button:active {
+  background-color: #c0c;
+}
+.Counter {
+  border: 5px solid #fcf;
+  font-weight: 700;
+  margin: 2em auto;
+  padding: 2em;
+  width: 400px;
+}
+.count {
+  font-size: 6em;
+  text-align: center;
+}
+.controls {
+  display: flex;
+  justify-content: center;
+}
